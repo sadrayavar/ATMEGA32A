@@ -17,7 +17,7 @@ eeprom unsigned int enter_array[31], exit_array[31];
 eeprom unsigned char i; // ?
 unsigned char const init_capacity = 10;
 signed char capacity = init_capacity, reserved = 0;
-bit is_full = 0, is_emp = 0;
+bit is_full = 0, is_empty = 1;
 
 // date related variables
 signed char minute = 59, hour = 23, second = 10, day = 12, month = 12;
@@ -88,58 +88,78 @@ interrupt[TIM2_OVF] void timer2_ovf_isr(void)
 // define interrupt 0: for exiting cars
 interrupt[EXT_INT0] void ext_int0_isr(void)
 {
-  capacity++;
-  n_khuruj++; // Incrementing the count of cars leaving the parking
-
-  // check if the parking is empty
-  if ((capacity + reserved) >= init_capacity)
+  if (is_empty == 1)
   {
-    capacity = init_capacity - reserved;
-    is_emp = 1;
+    lcd_clear();
+    lcd_putsf("Emp");
+    delay_ms(500);
   }
   else
   {
-    is_emp = 0;
-  }
 
-  // checking if the parking is full
-  if (capacity <= 0)
-  {
-    capacity = 0;
-    is_full = 1;
-  }
-  else
-  {
-    is_full = 0;
+    capacity++;
+    n_khuruj++;
+
+    // check if the parking is empty
+    if ((capacity + reserved) >= init_capacity)
+    {
+      capacity = init_capacity - reserved;
+      is_empty = 1;
+    }
+    else
+    {
+      is_empty = 0;
+    }
+
+    // checking if the parking is full
+    if (capacity <= 0)
+    {
+      capacity = 0;
+      is_full = 1;
+    }
+    else
+    {
+      is_full = 0;
+    }
   }
 }
 
 // define interrupt 1: for entering cars
 interrupt[EXT_INT1] void ext_int1_isr(void)
 {
-  capacity--;
-  n_vurud++;
-
-  // checking if the parking is full
-  if ((capacity) <= 0)
+  if (is_full == 1)
   {
-    capacity = 0;
-    is_full = 1;
+    lcd_clear();
+    lcd_putsf("Full");
+    delay_ms(500);
   }
   else
   {
-    is_full = 0;
-  }
 
-  // check if the parking is empty
-  if ((capacity + reserved) >= init_capacity)
-  {
-    capacity = init_capacity - reserved;
-    is_emp = 1;
-  }
-  else
-  {
-    is_emp = 0;
+    capacity--;
+    n_vurud++;
+
+    // checking if the parking is full
+    if ((capacity) <= 0)
+    {
+      capacity = 0;
+      is_full = 1;
+    }
+    else
+    {
+      is_full = 0;
+    }
+
+    // check if the parking is empty
+    if ((capacity + reserved) >= init_capacity)
+    {
+      capacity = init_capacity - reserved;
+      is_empty = 1;
+    }
+    else
+    {
+      is_empty = 0;
+    }
   }
 }
 
@@ -206,23 +226,9 @@ void main(void)
 
     sprintf(line, "Cap=%d %d/%d/%d", capacity, year, month, day);
     sprintf(line2, "%d:%d:%d  Res=%d ", hour, minute, second, reserved);
-    
+
     lcd_clear();
-
     lcd_puts(line);
-
-    if (is_full == 1)
-    {
-      lcd_putsf(" Full");
-      delay_ms(25);
-    }
-
-    if (is_emp == 1)
-    {
-      lcd_putsf(" Emp");
-      delay_ms(25);
-    }
-
     lcd_gotoxy(0, 1);
     lcd_puts(line2);
     delay_ms(25);
