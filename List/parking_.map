@@ -13,7 +13,7 @@ Variable                                                                        
 ------------------------------------------------------------------------------------------------
 enter_array                                                                       0x0000      62
 exit_array                                                                        0x003E      62
-i                                                                                 0x007C       1
+day_index                                                                         0x007C       1
 
 Register Allocation
 Variable                                                                          Register  Size
@@ -36,21 +36,21 @@ timer2_ovf_isr                                                                  
 ext_int0_isr                                                                      0x0012F     35
 ext_int1_isr                                                                      0x00152     48
 main                                                                              0x00182    153
-ok                                                                                0x0021B     87
-time_set                                                                          0x00272     97
+menu                                                                              0x0021B     87
+set_time                                                                          0x00272     97
 in_out_search                                                                     0x002D3    199
-reserve_park                                                                      0x0039A     48
-set_data                                                                          0x003CA    172
-put_buff_G100                                                                     0x00476     64
-_print_G100                                                                       0x004B6    308
-sprintf                                                                           0x005EA     52
-_lcd_write_nibble_G101                                                            0x0061E     37
-_lcd_write_data                                                                   0x00643     12
-lcd_gotoxy                                                                        0x0064F     17
-lcd_clear                                                                         0x00660     14
-lcd_putchar                                                                       0x0066E     32
-lcd_puts                                                                          0x0068E     15
-lcd_putsf                                                                         0x0069D     19
-lcd_init                                                                          0x006B0     48
-strlen                                                                            0x006E0     12
-strlenf                                                                           0x006EC     13
+reserve_park                                                                      0x0039A     50
+set_date                                                                          0x003CC    172
+put_buff_G100                                                                     0x00478     64
+_print_G100                                                                       0x004B8    308
+sprintf                                                                           0x005EC     52
+_lcd_write_nibble_G101                                                            0x00620     37
+_lcd_write_data                                                                   0x00645     12
+lcd_gotoxy                                                                        0x00651     17
+lcd_clear                                                                         0x00662     14
+lcd_putchar                                                                       0x00670     32
+lcd_puts                                                                          0x00690     15
+lcd_putsf                                                                         0x0069F     19
+lcd_init                                                                          0x006B2     48
+strlen                                                                            0x006E2     12
+strlenf                                                                           0x006EE     13
