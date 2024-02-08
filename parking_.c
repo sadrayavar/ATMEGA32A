@@ -1,7 +1,7 @@
 #include <mega32a.h>
-#include <delay.h>
-#include <stdio.h>
-#include <alcd.h>
+#include <delay.h> // delay_ms functions
+#include <stdio.h> // sprintf function
+#include <alcd.h>  // lcd related functions
 #define xtal 8000000
 
 // prototyping functions
@@ -205,7 +205,6 @@ void main(void)
 }
 
 /// Functions 4 ok and...
-
 char ok(void)
 {
   char _chose = 0;
@@ -284,7 +283,6 @@ char ok(void)
 }
 
 /// Time setting
-
 char time_set(void)
 {
   bit _chose = 0;
@@ -471,7 +469,6 @@ char in_out_search(void)
 }
 
 // reserve_park
-
 char reserve_park(void)
 {
   char buff[17];
@@ -517,7 +514,6 @@ char reserve_park(void)
 }
 
 //// data setting
-
 char set_data(void)
 {
   char _chose = 0;
