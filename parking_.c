@@ -387,106 +387,110 @@ char set_time(void)
 /// IN&OUT Search
 char in_out_search(void)
 {
-  char t_month = month, line[17], line2[17];
-  char i_temp = day_index;
+  char line[17], line2[17];
+  char temp_year = year, temp_month = month, temp_day = day_index;
   bit bit_m = 0;
+
   while (1)
   {
 
+    // UP
     if (PINA .1 == 0)
-    { // UP
+    {
       while (PINA .1 == 0)
         ;
-      i_temp++;
+      temp_day++;
 
-      if (i_temp > day_index & bit_m == 0)
+      if (temp_day > day_index & bit_m == 0)
       {
-        i_temp = day_index;
-        t_month--;
+        temp_day = day_index;
+        temp_month--;
         bit_m = 1;
       }
 
-      if (t_month <= 6 & i_temp > 31 & bit_m == 1)
+      if (temp_month <= 6 & temp_day > 31 & bit_m == 1)
       {
-        i_temp = 1;
-        t_month++;
+        temp_day = 1;
+        temp_month++;
         bit_m = 0;
       }
 
-      if (t_month > 6 & i_temp > 30 & bit_m == 1)
+      if (temp_month > 6 & temp_day > 30 & bit_m == 1)
       {
-        i_temp = 1;
-        t_month++;
+        temp_day = 1;
+        temp_month++;
         bit_m = 0;
       }
 
-      if (t_month == 12 & i_temp > 29 & bit_m == 1)
+      if (temp_month == 12 & temp_day > 29 & bit_m == 1)
       {
-        i_temp = 1;
-        t_month++;
+        temp_day = 1;
+        temp_month++;
         bit_m = 0;
       }
 
-      if (t_month == 0)
-        t_month = 12;
+      if (temp_month == 0)
+        temp_month = 12;
 
-      if (t_month > 12)
-        t_month = 1;
+      if (temp_month > 12)
+        temp_month = 1;
     }
 
+    // DOWN
     if (PINA .0 == 0)
-    { // DOWN
+    {
       while (PINA .0 == 0)
         ;
-      i_temp--;
+      temp_day--;
 
-      if (i_temp == 0 & bit_m == 0)
+      if (temp_day == 0 & bit_m == 0)
       {
 
-        t_month--;
+        temp_month--;
 
-        if (t_month == 0)
-          t_month = 12;
+        if (temp_month == 0)
+          temp_month = 12;
 
-        if (t_month > 12)
-          t_month = 1;
+        if (temp_month > 12)
+          temp_month = 1;
 
-        if (t_month <= 6)
-          i_temp = 31;
+        if (temp_month <= 6)
+          temp_day = 31;
 
-        if (t_month > 6)
-          i_temp = 30;
+        if (temp_month > 6)
+          temp_day = 30;
 
-        if (t_month == 12)
-          i_temp = 29;
+        if (temp_month == 12)
+          temp_day = 29;
 
         bit_m = 1;
       }
 
-      if (i_temp < day_index & bit_m == 1)
+      if (temp_day < day_index & bit_m == 1)
       {
-        i_temp = day_index;
-        t_month++;
+        temp_day = day_index;
+        temp_month++;
         bit_m = 0;
       }
 
-      if (t_month == 0)
-        t_month = 12;
+      if (temp_month == 0)
+        temp_month = 12;
 
-      if (t_month > 12)
-        t_month = 1;
+      if (temp_month > 12)
+        temp_month = 1;
     }
 
-    sprintf(line, "%d/%d/%d ", year, t_month, i_temp);
-    sprintf(line2, "in=%d out=%d", enter_array[i_temp], exit_array[i_temp]);
+    sprintf(line, "%d/%d/%d ", temp_year, temp_month, temp_day);
+    sprintf(line2, "in=%d out=%d", enter_array[temp_day], exit_array[temp_day]);
 
     lcd_clear();
     lcd_puts(line);
     lcd_gotoxy(0, 1);
     lcd_puts(line2);
 
+    // Back
     if (PINA .4 == 0)
-    { // Back
+    {
       while (PINA .4 == 0)
         ;
       return 0;
