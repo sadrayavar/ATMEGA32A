@@ -40,64 +40,66 @@
 ;eeprom unsigned int vurud_stat[31], khuruj_stat[31];
 ;eeprom unsigned char i;
 ;bit _full = 0, _emp = 0;
-;signed char minute = 00, hour = 00, second = 00, day = 1, month = 1;
+;
+;// date realted variables
+;signed char minute = 59, hour = 23, second = 10, day = 12, month = 12;
 
 	.DSEG
 ;signed int year = 1402;
 ;
 ;// define timer interrupt
 ;interrupt[TIM2_OVF] void timer2_ovf_isr(void)
-; 0000 0018 {
+; 0000 001A {
 
 	.CSEG
 ;PCODE: $0000000D VOL: 0
 ;PCODE: $0000000E VOL: 0
-; 0000 0019 
-; 0000 001A   if (second == 59)
+; 0000 001B 
+; 0000 001C   if (second == 59)
 ;PCODE: $0000000F VOL: 0
 ;PCODE: $00000010 VOL: 0
 ;PCODE: $00000011 VOL: 0
-; 0000 001B   {
-; 0000 001C     second = 0;
+; 0000 001D   {
+; 0000 001E     second = 0;
 ;PCODE: $00000012 VOL: 0
-; 0000 001D     if (minute == 59)
+; 0000 001F     if (minute == 59)
 ;PCODE: $00000013 VOL: 0
 ;PCODE: $00000014 VOL: 0
 ;PCODE: $00000015 VOL: 0
-; 0000 001E     {
-; 0000 001F       minute = 0;
+; 0000 0020     {
+; 0000 0021       minute = 0;
 ;PCODE: $00000016 VOL: 0
-; 0000 0020       if (hour == 23)
+; 0000 0022       if (hour == 23)
 ;PCODE: $00000017 VOL: 0
 ;PCODE: $00000018 VOL: 0
 ;PCODE: $00000019 VOL: 0
-; 0000 0021       {
-; 0000 0022         hour = 0;
+; 0000 0023       {
+; 0000 0024         hour = 0;
 ;PCODE: $0000001A VOL: 0
-; 0000 0023         day++;
+; 0000 0025         day++;
 ;PCODE: $0000001B VOL: 0
-; 0000 0024       }
-; 0000 0025       else
+; 0000 0026       }
+; 0000 0027       else
 ;PCODE: $0000001C VOL: 0
 ;PCODE: $0000001D VOL: 0
-; 0000 0026         hour++;
+; 0000 0028         hour++;
 ;PCODE: $0000001E VOL: 0
-; 0000 0027     }
+; 0000 0029     }
 ;PCODE: $0000001F VOL: 0
-; 0000 0028     else
+; 0000 002A     else
 ;PCODE: $00000020 VOL: 0
 ;PCODE: $00000021 VOL: 0
-; 0000 0029       minute++;
+; 0000 002B       minute++;
 ;PCODE: $00000022 VOL: 0
-; 0000 002A   }
+; 0000 002C   }
 ;PCODE: $00000023 VOL: 0
-; 0000 002B   else
+; 0000 002D   else
 ;PCODE: $00000024 VOL: 0
 ;PCODE: $00000025 VOL: 0
-; 0000 002C     second++;
+; 0000 002E     second++;
 ;PCODE: $00000026 VOL: 0
-; 0000 002D 
-; 0000 002E   if ((day > 30) & (month > 6))
+; 0000 002F 
+; 0000 0030   if ((day > 30) & (month > 6))
 ;PCODE: $00000027 VOL: 0
 ;PCODE: $00000028 VOL: 0
 ;PCODE: $00000029 VOL: 0
@@ -108,17 +110,17 @@
 ;PCODE: $0000002E VOL: 0
 ;PCODE: $0000002F VOL: 0
 ;PCODE: $00000030 VOL: 0
-; 0000 002F   {
-; 0000 0030     day = 1;
+; 0000 0031   {
+; 0000 0032     day = 1;
 ;PCODE: $00000031 VOL: 0
 ;PCODE: $00000032 VOL: 0
-; 0000 0031     month++;
+; 0000 0033     month++;
 ;PCODE: $00000033 VOL: 0
 ;PCODE: $00000034 VOL: 0
 ;PCODE: $00000035 VOL: 0
-; 0000 0032   }
-; 0000 0033 
-; 0000 0034   if ((day > 31) & (month <= 6))
+; 0000 0034   }
+; 0000 0035 
+; 0000 0036   if ((day > 31) & (month <= 6))
 ;PCODE: $00000036 VOL: 0
 ;PCODE: $00000037 VOL: 0
 ;PCODE: $00000038 VOL: 0
@@ -129,17 +131,17 @@
 ;PCODE: $0000003D VOL: 0
 ;PCODE: $0000003E VOL: 0
 ;PCODE: $0000003F VOL: 0
-; 0000 0035   {
-; 0000 0036     day = 1;
+; 0000 0037   {
+; 0000 0038     day = 1;
 ;PCODE: $00000040 VOL: 0
 ;PCODE: $00000041 VOL: 0
-; 0000 0037     month++;
+; 0000 0039     month++;
 ;PCODE: $00000042 VOL: 0
 ;PCODE: $00000043 VOL: 0
 ;PCODE: $00000044 VOL: 0
-; 0000 0038   }
-; 0000 0039 
-; 0000 003A   if ((day > 29) & (month == 12))
+; 0000 003A   }
+; 0000 003B 
+; 0000 003C   if ((day > 29) & (month == 12))
 ;PCODE: $00000045 VOL: 0
 ;PCODE: $00000046 VOL: 0
 ;PCODE: $00000047 VOL: 0
@@ -150,32 +152,32 @@
 ;PCODE: $0000004C VOL: 0
 ;PCODE: $0000004D VOL: 0
 ;PCODE: $0000004E VOL: 0
-; 0000 003B   {
-; 0000 003C     day = 1;
+; 0000 003D   {
+; 0000 003E     day = 1;
 ;PCODE: $0000004F VOL: 0
 ;PCODE: $00000050 VOL: 0
-; 0000 003D     month++;
+; 0000 003F     month++;
 ;PCODE: $00000051 VOL: 0
 ;PCODE: $00000052 VOL: 0
 ;PCODE: $00000053 VOL: 0
-; 0000 003E   }
-; 0000 003F 
-; 0000 0040   if (month > 12)
+; 0000 0040   }
+; 0000 0041 
+; 0000 0042   if (month > 12)
 ;PCODE: $00000054 VOL: 0
 ;PCODE: $00000055 VOL: 0
 ;PCODE: $00000056 VOL: 0
 ;PCODE: $00000057 VOL: 0
-; 0000 0041   {
-; 0000 0042     month = 1;
+; 0000 0043   {
+; 0000 0044     month = 1;
 ;PCODE: $00000058 VOL: 0
 ;PCODE: $00000059 VOL: 0
-; 0000 0043     year++;
+; 0000 0045     year++;
 ;PCODE: $0000005A VOL: 0
 ;PCODE: $0000005B VOL: 0
 ;PCODE: $0000005C VOL: 0
 ;PCODE: $0000005D VOL: 0
-; 0000 0044   }
-; 0000 0045 }
+; 0000 0046   }
+; 0000 0047 }
 ;PCODE: $0000005E VOL: 0
 ;PCODE: $0000005F VOL: 0
 ;PCODE: $00000060 VOL: 0
@@ -183,17 +185,17 @@
 ;
 ;// define interrupt 0
 ;interrupt[EXT_INT0] void ext_int0_isr(void)
-; 0000 0049 {
+; 0000 004B {
 ;PCODE: $00000062 VOL: 0
 ;PCODE: $00000063 VOL: 0
-; 0000 004A   capacity++;
+; 0000 004C   capacity++;
 ;PCODE: $00000064 VOL: 0
-; 0000 004B   n_khuruj++;
+; 0000 004D   n_khuruj++;
 ;PCODE: $00000065 VOL: 0
 ;PCODE: $00000066 VOL: 0
 ;PCODE: $00000067 VOL: 0
-; 0000 004C 
-; 0000 004D   if ((capacity + reserved) >= 100)
+; 0000 004E 
+; 0000 004F   if ((capacity + reserved) >= 100)
 ;PCODE: $00000068 VOL: 0
 ;PCODE: $00000069 VOL: 0
 ;PCODE: $0000006A VOL: 0
@@ -201,89 +203,89 @@
 ;PCODE: $0000006C VOL: 0
 ;PCODE: $0000006D VOL: 0
 ;PCODE: $0000006E VOL: 0
-; 0000 004E   {
-; 0000 004F     capacity = 100 - reserved;
+; 0000 0050   {
+; 0000 0051     capacity = 100 - reserved;
 ;PCODE: $0000006F VOL: 0
 ;PCODE: $00000070 VOL: 0
 ;PCODE: $00000071 VOL: 0
-; 0000 0050     _emp = 1;
+; 0000 0052     _emp = 1;
 ;PCODE: $00000072 VOL: 0
 ;PCODE: $00000073 VOL: 0
 ;PCODE: $00000074 VOL: 0
-; 0000 0051   }
-; 0000 0052   else
+; 0000 0053   }
+; 0000 0054   else
 ;PCODE: $00000075 VOL: 0
 ;PCODE: $00000076 VOL: 0
-; 0000 0053   {
-; 0000 0054     _emp = 0;
+; 0000 0055   {
+; 0000 0056     _emp = 0;
 ;PCODE: $00000077 VOL: 0
 ;PCODE: $00000078 VOL: 0
 ;PCODE: $00000079 VOL: 0
-; 0000 0055   }
+; 0000 0057   }
 ;PCODE: $0000007A VOL: 0
-; 0000 0056 
-; 0000 0057   if ((capacity) <= 0)
+; 0000 0058 
+; 0000 0059   if ((capacity) <= 0)
 ;PCODE: $0000007B VOL: 0
 ;PCODE: $0000007C VOL: 0
 ;PCODE: $0000007D VOL: 0
-; 0000 0058   {
-; 0000 0059     capacity = 0;
+; 0000 005A   {
+; 0000 005B     capacity = 0;
 ;PCODE: $0000007E VOL: 0
-; 0000 005A     _full = 1;
+; 0000 005C     _full = 1;
 ;PCODE: $0000007F VOL: 0
 ;PCODE: $00000080 VOL: 0
 ;PCODE: $00000081 VOL: 0
-; 0000 005B   }
-; 0000 005C   else
+; 0000 005D   }
+; 0000 005E   else
 ;PCODE: $00000082 VOL: 0
 ;PCODE: $00000083 VOL: 0
-; 0000 005D   {
-; 0000 005E     _full = 0;
+; 0000 005F   {
+; 0000 0060     _full = 0;
 ;PCODE: $00000084 VOL: 0
 ;PCODE: $00000085 VOL: 0
 ;PCODE: $00000086 VOL: 0
-; 0000 005F   }
+; 0000 0061   }
 ;PCODE: $00000087 VOL: 0
-; 0000 0060 }
+; 0000 0062 }
 ;PCODE: $00000088 VOL: 0
 ;PCODE: $00000089 VOL: 0
 ;PCODE: $0000008A VOL: 0
 ;
 ;// define interrupt 1
 ;interrupt[EXT_INT1] void ext_int1_isr(void)
-; 0000 0064 {
+; 0000 0066 {
 ;PCODE: $0000008B VOL: 0
 ;PCODE: $0000008C VOL: 0
-; 0000 0065   capacity--;
+; 0000 0067   capacity--;
 ;PCODE: $0000008D VOL: 0
-; 0000 0066   n_vurud++;
+; 0000 0068   n_vurud++;
 ;PCODE: $0000008E VOL: 0
 ;PCODE: $0000008F VOL: 0
 ;PCODE: $00000090 VOL: 0
-; 0000 0067   if ((capacity) <= 0)
+; 0000 0069   if ((capacity) <= 0)
 ;PCODE: $00000091 VOL: 0
 ;PCODE: $00000092 VOL: 0
 ;PCODE: $00000093 VOL: 0
-; 0000 0068   {
-; 0000 0069     capacity = 0;
+; 0000 006A   {
+; 0000 006B     capacity = 0;
 ;PCODE: $00000094 VOL: 0
-; 0000 006A     _full = 1;
+; 0000 006C     _full = 1;
 ;PCODE: $00000095 VOL: 0
 ;PCODE: $00000096 VOL: 0
 ;PCODE: $00000097 VOL: 0
-; 0000 006B   }
-; 0000 006C   else
+; 0000 006D   }
+; 0000 006E   else
 ;PCODE: $00000098 VOL: 0
 ;PCODE: $00000099 VOL: 0
-; 0000 006D   {
-; 0000 006E     _full = 0;
+; 0000 006F   {
+; 0000 0070     _full = 0;
 ;PCODE: $0000009A VOL: 0
 ;PCODE: $0000009B VOL: 0
 ;PCODE: $0000009C VOL: 0
-; 0000 006F   }
+; 0000 0071   }
 ;PCODE: $0000009D VOL: 0
-; 0000 0070 
-; 0000 0071   if ((capacity + reserved) >= 100)
+; 0000 0072 
+; 0000 0073   if ((capacity + reserved) >= 100)
 ;PCODE: $0000009E VOL: 0
 ;PCODE: $0000009F VOL: 0
 ;PCODE: $000000A0 VOL: 0
@@ -291,129 +293,129 @@
 ;PCODE: $000000A2 VOL: 0
 ;PCODE: $000000A3 VOL: 0
 ;PCODE: $000000A4 VOL: 0
-; 0000 0072   {
-; 0000 0073     capacity = 100 - reserved;
+; 0000 0074   {
+; 0000 0075     capacity = 100 - reserved;
 ;PCODE: $000000A5 VOL: 0
 ;PCODE: $000000A6 VOL: 0
 ;PCODE: $000000A7 VOL: 0
-; 0000 0074     _emp = 1;
+; 0000 0076     _emp = 1;
 ;PCODE: $000000A8 VOL: 0
 ;PCODE: $000000A9 VOL: 0
 ;PCODE: $000000AA VOL: 0
-; 0000 0075   }
-; 0000 0076   else
+; 0000 0077   }
+; 0000 0078   else
 ;PCODE: $000000AB VOL: 0
 ;PCODE: $000000AC VOL: 0
-; 0000 0077   {
-; 0000 0078     _emp = 0;
+; 0000 0079   {
+; 0000 007A     _emp = 0;
 ;PCODE: $000000AD VOL: 0
 ;PCODE: $000000AE VOL: 0
 ;PCODE: $000000AF VOL: 0
-; 0000 0079   }
+; 0000 007B   }
 ;PCODE: $000000B0 VOL: 0
-; 0000 007A }
+; 0000 007C }
 ;PCODE: $000000B1 VOL: 0
 ;PCODE: $000000B2 VOL: 0
 ;PCODE: $000000B3 VOL: 0
 ;
 ;void main(void)
-; 0000 007D {
+; 0000 007F {
 ;PCODE: $000000B4 VOL: 0
-; 0000 007E 
-; 0000 007F   char buff[17], buff2[17];
 ; 0000 0080 
-; 0000 0081   // GICR|=0xC0;
-; 0000 0082   // MCUCR=0x0A;
-; 0000 0083   // MCUCSR=0x00;
-; 0000 0084   // GIFR=0xC0;
-; 0000 0085 
-; 0000 0086   GICR |= 0xC0;
+; 0000 0081   char line[17], line2[17];
+; 0000 0082 
+; 0000 0083   // GICR|=0xC0;
+; 0000 0084   // MCUCR=0x0A;
+; 0000 0085   // MCUCSR=0x00;
+; 0000 0086   // GIFR=0xC0;
+; 0000 0087 
+; 0000 0088   GICR |= 0xC0;
 ;PCODE: $000000B5 VOL: 0
-;	buff -> Y+17
-;	buff2 -> Y+0
+;	line -> Y+17
+;	line2 -> Y+0
 ;PCODE: $000000B6 VOL: 0
 ;PCODE: $000000B7 VOL: 0
 ;PCODE: $000000B8 VOL: 0
-; 0000 0087   MCUCR = 0x0B;
+; 0000 0089   MCUCR = 0x0B;
 ;PCODE: $000000B9 VOL: 0
 ;PCODE: $000000BA VOL: 0
-; 0000 0088   MCUCSR = 0x00;
+; 0000 008A   MCUCSR = 0x00;
 ;PCODE: $000000BB VOL: 0
 ;PCODE: $000000BC VOL: 0
-; 0000 0089   GIFR = 0xC0;
+; 0000 008B   GIFR = 0xC0;
 ;PCODE: $000000BD VOL: 0
 ;PCODE: $000000BE VOL: 0
-; 0000 008A 
-; 0000 008B   // initilize lcd
-; 0000 008C   lcd_init(16);
+; 0000 008C 
+; 0000 008D   // initilize lcd
+; 0000 008E   lcd_init(16);
 ;PCODE: $000000BF VOL: 0
 ;PCODE: $000000C0 VOL: 0
-; 0000 008D   lcd_clear();
+; 0000 008F   lcd_clear();
 ;PCODE: $000000C1 VOL: 0
-; 0000 008E   lcd_gotoxy(0, 1);
+; 0000 0090   lcd_gotoxy(0, 1);
 ;PCODE: $000000C2 VOL: 0
 ;PCODE: $000000C3 VOL: 0
 ;PCODE: $000000C4 VOL: 0
 ;PCODE: $000000C5 VOL: 0
-; 0000 008F   delay_ms(300);
+; 0000 0091   delay_ms(300);
 ;PCODE: $000000C6 VOL: 0
 ;PCODE: $000000C7 VOL: 0
-; 0000 0090 
-; 0000 0091   ASSR = 0x08; // timer2
+; 0000 0092 
+; 0000 0093   ASSR = 0x08; // timer2
 ;PCODE: $000000C8 VOL: 0
 ;PCODE: $000000C9 VOL: 0
-; 0000 0092   TCCR2 = 0x05;
+; 0000 0094   TCCR2 = 0x05;
 ;PCODE: $000000CA VOL: 0
 ;PCODE: $000000CB VOL: 0
-; 0000 0093   TCNT2 = 0x00;
+; 0000 0095   TCNT2 = 0x00;
 ;PCODE: $000000CC VOL: 0
 ;PCODE: $000000CD VOL: 0
-; 0000 0094   OCR2 = 0x00;
+; 0000 0096   OCR2 = 0x00;
 ;PCODE: $000000CE VOL: 0
 ;PCODE: $000000CF VOL: 0
-; 0000 0095   TIMSK = 0x40;
+; 0000 0097   TIMSK = 0x40;
 ;PCODE: $000000D0 VOL: 0
 ;PCODE: $000000D1 VOL: 0
-; 0000 0096 
-; 0000 0097   PORTA = (1 << DDD0) | (1 << DDD1) | (1 << DDD2) | (1 << DDD3) | (1 << DDD4);
+; 0000 0098 
+; 0000 0099   PORTA = (1 << DDD0) | (1 << DDD1) | (1 << DDD2) | (1 << DDD3) | (1 << DDD4);
 ;PCODE: $000000D2 VOL: 0
 ;PCODE: $000000D3 VOL: 0
-; 0000 0098 
-; 0000 0099   day = i; // i in epprom
+; 0000 009A 
+; 0000 009B   day = i; // i in epprom
 ;PCODE: $000000D4 VOL: 0
 ;PCODE: $000000D5 VOL: 0
 ;PCODE: $000000D6 VOL: 0
-; 0000 009A 
-; 0000 009B #asm("sei")
+; 0000 009C 
+; 0000 009D #asm("sei")
 ;PCODE: $000000D7 VOL: 0
 	sei
 ;PCODE: $000000D8 VOL: 0
-; 0000 009C   capacity = capacity - reserved;
+; 0000 009E   capacity = capacity - reserved;
 ;PCODE: $000000D9 VOL: 0
 ;PCODE: $000000DA VOL: 0
-; 0000 009D 
-; 0000 009E   while (1)
+; 0000 009F 
+; 0000 00A0   while (1)
 ;PCODE: $000000DB VOL: 0
-; 0000 009F   {
-; 0000 00A0 
-; 0000 00A1     if (PINA .2 == 0)
+; 0000 00A1   {
+; 0000 00A2 
+; 0000 00A3     if (PINA .2 == 0)
 ;PCODE: $000000DC VOL: 0
 ;PCODE: $000000DD VOL: 0
 ;PCODE: $000000DE VOL: 0
-; 0000 00A2     {
-; 0000 00A3       while (PINA .2 == 0)
+; 0000 00A4     {
+; 0000 00A5       while (PINA .2 == 0)
 ;PCODE: $000000DF VOL: 0
 ;PCODE: $000000E0 VOL: 0
 ;PCODE: $000000E1 VOL: 0
 ;PCODE: $000000E2 VOL: 0
-; 0000 00A4         ;
+; 0000 00A6         ;
 ;PCODE: $000000E3 VOL: 0
 ;PCODE: $000000E4 VOL: 0
-; 0000 00A5       ok();
+; 0000 00A7       ok();
 ;PCODE: $000000E5 VOL: 0
-; 0000 00A6     }
-; 0000 00A7 
-; 0000 00A8     if (hour == 0 & minute == 0 & second == 0)
+; 0000 00A8     }
+; 0000 00A9 
+; 0000 00AA     if (hour == 0 & minute == 0 & second == 0)
 ;PCODE: $000000E6 VOL: 0
 ;PCODE: $000000E7 VOL: 0
 ;PCODE: $000000E8 VOL: 0
@@ -429,8 +431,8 @@
 ;PCODE: $000000F2 VOL: 0
 ;PCODE: $000000F3 VOL: 0
 ;PCODE: $000000F4 VOL: 0
-; 0000 00A9     { //  data will save   in 0:0:00
-; 0000 00AA       vurud_stat[i] = n_vurud;
+; 0000 00AB     { //  data will save   in 0:0:00
+; 0000 00AC       vurud_stat[i] = n_vurud;
 ;PCODE: $000000F5 VOL: 0
 ;PCODE: $000000F6 VOL: 0
 ;PCODE: $000000F7 VOL: 0
@@ -439,7 +441,7 @@
 ;PCODE: $000000FA VOL: 0
 ;PCODE: $000000FB VOL: 0
 ;PCODE: $000000FC VOL: 0
-; 0000 00AB       khuruj_stat[i] = n_khuruj;
+; 0000 00AD       khuruj_stat[i] = n_khuruj;
 ;PCODE: $000000FD VOL: 0
 ;PCODE: $000000FE VOL: 0
 ;PCODE: $000000FF VOL: 0
@@ -448,23 +450,23 @@
 ;PCODE: $00000102 VOL: 0
 ;PCODE: $00000103 VOL: 0
 ;PCODE: $00000104 VOL: 0
-; 0000 00AC       i++;
+; 0000 00AE       i++;
 ;PCODE: $00000105 VOL: 0
 ;PCODE: $00000106 VOL: 0
 ;PCODE: $00000107 VOL: 0
 ;PCODE: $00000108 VOL: 0
-; 0000 00AD 
-; 0000 00AE       if (i > 30) // 30 31 29 yek mah
+; 0000 00AF 
+; 0000 00B0       if (i > 30) // 30 31 29 yek mah
 ;PCODE: $00000109 VOL: 0
 ;PCODE: $0000010A VOL: 0
 ;PCODE: $0000010B VOL: 0
 ;PCODE: $0000010C VOL: 0
-; 0000 00AF         i = 0;
+; 0000 00B1         i = 0;
 ;PCODE: $0000010D VOL: 0
 ;PCODE: $0000010E VOL: 0
 ;PCODE: $0000010F VOL: 0
-; 0000 00B0 
-; 0000 00B1       while (hour == 0 & minute == 0 & second == 0)
+; 0000 00B2 
+; 0000 00B3       while (hour == 0 & minute == 0 & second == 0)
 ;PCODE: $00000110 VOL: 0
 ;PCODE: $00000111 VOL: 0
 ;PCODE: $00000112 VOL: 0
@@ -481,19 +483,19 @@
 ;PCODE: $0000011D VOL: 0
 ;PCODE: $0000011E VOL: 0
 ;PCODE: $0000011F VOL: 0
-; 0000 00B2       {
-; 0000 00B3         lcd_clear();
+; 0000 00B4       {
+; 0000 00B5         lcd_clear();
 ;PCODE: $00000120 VOL: 0
-; 0000 00B4         lcd_putsf("saving data");
+; 0000 00B6         lcd_putsf("saving data");
 ;PCODE: $00000121 VOL: 0
 ;PCODE: $00000122 VOL: 0
 ;PCODE: $00000123 VOL: 0
-; 0000 00B5       }
+; 0000 00B7       }
 ;PCODE: $00000124 VOL: 0
 ;PCODE: $00000125 VOL: 0
-; 0000 00B6     }
-; 0000 00B7 
-; 0000 00B8     sprintf(buff, "Z=%d %d/%d/%d", capacity, year, month, day);
+; 0000 00B8     }
+; 0000 00B9 
+; 0000 00BA     sprintf(line, "Cap=%d %d/%d/%d", capacity, year, month, day);
 ;PCODE: $00000126 VOL: 0
 ;PCODE: $00000127 VOL: 0
 ;PCODE: $00000128 VOL: 0
@@ -516,7 +518,7 @@
 ;PCODE: $00000139 VOL: 0
 ;PCODE: $0000013A VOL: 0
 ;PCODE: $0000013B VOL: 0
-; 0000 00B9     sprintf(buff2, "%d:%d:%d  R=%d ", hour, minute, second, reserved);
+; 0000 00BB     sprintf(line2, "%d:%d:%d  R=%d ", hour, minute, second, reserved);
 ;PCODE: $0000013C VOL: 0
 ;PCODE: $0000013D VOL: 0
 ;PCODE: $0000013E VOL: 0
@@ -538,36 +540,34 @@
 ;PCODE: $0000014E VOL: 0
 ;PCODE: $0000014F VOL: 0
 ;PCODE: $00000150 VOL: 0
-; 0000 00BA 
-; 0000 00BB     lcd_clear();
+; 0000 00BC     // sprintf(line, "%d/%d/%d  %d:%d:%d", year, month, day, hour, minute, second);
+; 0000 00BD     // sprintf(line2, "Cap=%d   R=%d ", capacity, reserved);
+; 0000 00BE 
+; 0000 00BF     lcd_clear();
 ;PCODE: $00000151 VOL: 0
-; 0000 00BC 
-; 0000 00BD     lcd_puts(buff);
+; 0000 00C0 
+; 0000 00C1     lcd_puts(line);
 ;PCODE: $00000152 VOL: 0
 ;PCODE: $00000153 VOL: 0
-; 0000 00BE 
-; 0000 00BF     if (_full == 1)
+; 0000 00C2 
+; 0000 00C3     if (_full == 1)
 ;PCODE: $00000154 VOL: 0
 ;PCODE: $00000155 VOL: 0
 ;PCODE: $00000156 VOL: 0
-; 0000 00C0     {
-; 0000 00C1       lcd_putsf(" Full");
+; 0000 00C4       lcd_putsf(" Full");
 ;PCODE: $00000157 VOL: 0
 ;PCODE: $00000158 VOL: 0
 ;PCODE: $00000159 VOL: 0
-; 0000 00C2     }
-; 0000 00C3 
-; 0000 00C4     if (_emp == 1)
+; 0000 00C5 
+; 0000 00C6     if (_emp == 1)
 ;PCODE: $0000015A VOL: 0
 ;PCODE: $0000015B VOL: 0
 ;PCODE: $0000015C VOL: 0
 ;PCODE: $0000015D VOL: 0
-; 0000 00C5     {
-; 0000 00C6       lcd_putsf(" Emp");
+; 0000 00C7       lcd_putsf(" Emp");
 ;PCODE: $0000015E VOL: 0
 ;PCODE: $0000015F VOL: 0
 ;PCODE: $00000160 VOL: 0
-; 0000 00C7     }
 ; 0000 00C8 
 ; 0000 00C9     lcd_gotoxy(0, 1);
 ;PCODE: $00000161 VOL: 0
@@ -575,7 +575,7 @@
 ;PCODE: $00000163 VOL: 0
 ;PCODE: $00000164 VOL: 0
 ;PCODE: $00000165 VOL: 0
-; 0000 00CA     lcd_puts(buff2);
+; 0000 00CA     lcd_puts(line2);
 ;PCODE: $00000166 VOL: 0
 ;PCODE: $00000167 VOL: 0
 ; 0000 00CB     delay_ms(25);

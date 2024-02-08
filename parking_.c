@@ -16,7 +16,9 @@ unsigned int n_vurud, n_khuruj; // maximum  65535  mashin dar ruz
 eeprom unsigned int vurud_stat[31], khuruj_stat[31];
 eeprom unsigned char i;
 bit _full = 0, _emp = 0;
-signed char minute = 00, hour = 00, second = 00, day = 1, month = 1;
+
+// date realted variables
+signed char minute = 59, hour = 23, second = 10, day = 12, month = 12;
 signed int year = 1402;
 
 // define timer interrupt
@@ -124,7 +126,7 @@ interrupt[EXT_INT1] void ext_int1_isr(void)
 void main(void)
 {
 
-  char buff[17], buff2[17];
+  char line[17], line2[17];
 
   // GICR|=0xC0;
   // MCUCR=0x0A;
@@ -181,25 +183,23 @@ void main(void)
       }
     }
 
-    sprintf(buff, "Z=%d %d/%d/%d", capacity, year, month, day);
-    sprintf(buff2, "%d:%d:%d  R=%d ", hour, minute, second, reserved);
+    sprintf(line, "Cap=%d %d/%d/%d", capacity, year, month, day);
+    sprintf(line2, "%d:%d:%d  Res=%d ", hour, minute, second, reserved);
+    // sprintf(line, "%d/%d/%d  %d:%d:%d", year, month, day, hour, minute, second);
+    // sprintf(line2, "Cap=%d   R=%d ", capacity, reserved);
 
     lcd_clear();
 
-    lcd_puts(buff);
+    lcd_puts(line);
 
     if (_full == 1)
-    {
       lcd_putsf(" Full");
-    }
 
     if (_emp == 1)
-    {
       lcd_putsf(" Emp");
-    }
 
     lcd_gotoxy(0, 1);
-    lcd_puts(buff2);
+    lcd_puts(line2);
     delay_ms(25);
   }
 }

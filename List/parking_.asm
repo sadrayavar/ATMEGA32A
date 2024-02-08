@@ -1137,42 +1137,43 @@ __REG_BIT_VARS:
 ;GLOBAL REGISTER VARIABLES INITIALIZATION
 __REG_VARS:
 	.DB  0x0,0x64,0x0,0x0
-	.DB  0x0,0x0,0x0,0x0
-	.DB  0x1,0x0
+	.DB  0x0,0x0,0x17,0x3B
+	.DB  0xC,0xA
 
 _0x3:
-	.DB  0x1
+	.DB  0xC
 _0x4:
 	.DB  0x7A,0x5
 _0x0:
 	.DB  0x73,0x61,0x76,0x69,0x6E,0x67,0x20,0x64
-	.DB  0x61,0x74,0x61,0x0,0x5A,0x3D,0x25,0x64
-	.DB  0x20,0x25,0x64,0x2F,0x25,0x64,0x2F,0x25
-	.DB  0x64,0x0,0x25,0x64,0x3A,0x25,0x64,0x3A
-	.DB  0x25,0x64,0x20,0x20,0x52,0x3D,0x25,0x64
-	.DB  0x20,0x0,0x20,0x46,0x75,0x6C,0x6C,0x0
-	.DB  0x20,0x45,0x6D,0x70,0x0,0x54,0x69,0x6D
-	.DB  0x65,0x20,0x53,0x65,0x74,0x74,0x69,0x6E
-	.DB  0x67,0x20,0x3E,0x3E,0x0,0x49,0x4E,0x26
-	.DB  0x4F,0x55,0x54,0x20,0x53,0x65,0x61,0x72
-	.DB  0x63,0x68,0x20,0x3E,0x3E,0x0,0x52,0x65
-	.DB  0x73,0x65,0x72,0x76,0x65,0x5F,0x50,0x61
-	.DB  0x72,0x6B,0x20,0x3E,0x3E,0x0,0x53,0x65
-	.DB  0x74,0x20,0x64,0x61,0x74,0x61,0x20,0x3E
-	.DB  0x3E,0x0,0x53,0x65,0x74,0x20,0x6D,0x69
-	.DB  0x6E,0x3D,0x25,0x64,0x20,0x20,0x3E,0x0
-	.DB  0x53,0x65,0x74,0x20,0x68,0x6F,0x75,0x72
-	.DB  0x3D,0x25,0x64,0x20,0x20,0x3E,0x0,0x25
-	.DB  0x64,0x2F,0x25,0x64,0x2F,0x25,0x64,0x20
-	.DB  0x0,0x69,0x6E,0x3D,0x25,0x64,0x20,0x6F
-	.DB  0x75,0x74,0x3D,0x25,0x64,0x0,0x52,0x65
-	.DB  0x73,0x65,0x72,0x76,0x65,0x64,0x3D,0x25
-	.DB  0x64,0x0,0x53,0x65,0x74,0x20,0x6D,0x6F
-	.DB  0x6E,0x74,0x68,0x3D,0x25,0x64,0x20,0x20
-	.DB  0x3E,0x0,0x53,0x65,0x74,0x20,0x64,0x61
-	.DB  0x79,0x3D,0x25,0x64,0x20,0x20,0x3E,0x0
-	.DB  0x53,0x65,0x74,0x20,0x79,0x65,0x61,0x72
-	.DB  0x3D,0x25,0x64,0x20,0x20,0x3E,0x0
+	.DB  0x61,0x74,0x61,0x0,0x43,0x61,0x70,0x3D
+	.DB  0x25,0x64,0x20,0x25,0x64,0x2F,0x25,0x64
+	.DB  0x2F,0x25,0x64,0x0,0x25,0x64,0x3A,0x25
+	.DB  0x64,0x3A,0x25,0x64,0x20,0x20,0x52,0x3D
+	.DB  0x25,0x64,0x20,0x0,0x20,0x46,0x75,0x6C
+	.DB  0x6C,0x0,0x20,0x45,0x6D,0x70,0x0,0x54
+	.DB  0x69,0x6D,0x65,0x20,0x53,0x65,0x74,0x74
+	.DB  0x69,0x6E,0x67,0x20,0x3E,0x3E,0x0,0x49
+	.DB  0x4E,0x26,0x4F,0x55,0x54,0x20,0x53,0x65
+	.DB  0x61,0x72,0x63,0x68,0x20,0x3E,0x3E,0x0
+	.DB  0x52,0x65,0x73,0x65,0x72,0x76,0x65,0x5F
+	.DB  0x50,0x61,0x72,0x6B,0x20,0x3E,0x3E,0x0
+	.DB  0x53,0x65,0x74,0x20,0x64,0x61,0x74,0x61
+	.DB  0x20,0x3E,0x3E,0x0,0x53,0x65,0x74,0x20
+	.DB  0x6D,0x69,0x6E,0x3D,0x25,0x64,0x20,0x20
+	.DB  0x3E,0x0,0x53,0x65,0x74,0x20,0x68,0x6F
+	.DB  0x75,0x72,0x3D,0x25,0x64,0x20,0x20,0x3E
+	.DB  0x0,0x25,0x64,0x2F,0x25,0x64,0x2F,0x25
+	.DB  0x64,0x20,0x0,0x69,0x6E,0x3D,0x25,0x64
+	.DB  0x20,0x6F,0x75,0x74,0x3D,0x25,0x64,0x0
+	.DB  0x52,0x65,0x73,0x65,0x72,0x76,0x65,0x64
+	.DB  0x3D,0x25,0x64,0x0,0x53,0x65,0x74,0x20
+	.DB  0x6D,0x6F,0x6E,0x74,0x68,0x3D,0x25,0x64
+	.DB  0x20,0x20,0x3E,0x0,0x53,0x65,0x74,0x20
+	.DB  0x64,0x61,0x79,0x3D,0x25,0x64,0x20,0x20
+	.DB  0x3E,0x0,0x53,0x65,0x74,0x20,0x79,0x65
+	.DB  0x61,0x72,0x3D,0x25,0x64,0x20,0x20,0x3E
+	.DB  0x0
 _0x2020003:
 	.DB  0x80,0xC0
 
@@ -1307,14 +1308,16 @@ __GLOBAL_INI_END:
 ;eeprom unsigned int vurud_stat[31], khuruj_stat[31];
 ;eeprom unsigned char i;
 ;bit _full = 0, _emp = 0;
-;signed char minute = 00, hour = 00, second = 00, day = 1, month = 1;
+;
+;// date realted variables
+;signed char minute = 59, hour = 23, second = 10, day = 12, month = 12;
 
 	.DSEG
 ;signed int year = 1402;
 ;
 ;// define timer interrupt
 ;interrupt[TIM2_OVF] void timer2_ovf_isr(void)
-; 0000 0018 {
+; 0000 001A {
 
 	.CSEG
 _timer2_ovf_isr:
@@ -1326,51 +1329,51 @@ _timer2_ovf_isr:
 	ST   -Y,R31
 	IN   R30,SREG
 	ST   -Y,R30
-; 0000 0019 
-; 0000 001A   if (second == 59)
+; 0000 001B 
+; 0000 001C   if (second == 59)
 	LDI  R30,LOW(59)
 	CP   R30,R13
 	BRNE _0x5
-; 0000 001B   {
-; 0000 001C     second = 0;
+; 0000 001D   {
+; 0000 001E     second = 0;
 	CLR  R13
-; 0000 001D     if (minute == 59)
+; 0000 001F     if (minute == 59)
 	CP   R30,R11
 	BRNE _0x6
-; 0000 001E     {
-; 0000 001F       minute = 0;
+; 0000 0020     {
+; 0000 0021       minute = 0;
 	CLR  R11
-; 0000 0020       if (hour == 23)
+; 0000 0022       if (hour == 23)
 	LDI  R30,LOW(23)
 	CP   R30,R10
 	BRNE _0x7
-; 0000 0021       {
-; 0000 0022         hour = 0;
+; 0000 0023       {
+; 0000 0024         hour = 0;
 	CLR  R10
-; 0000 0023         day++;
+; 0000 0025         day++;
 	INC  R12
-; 0000 0024       }
-; 0000 0025       else
+; 0000 0026       }
+; 0000 0027       else
 	RJMP _0x8
 _0x7:
-; 0000 0026         hour++;
+; 0000 0028         hour++;
 	INC  R10
-; 0000 0027     }
+; 0000 0029     }
 _0x8:
-; 0000 0028     else
+; 0000 002A     else
 	RJMP _0x9
 _0x6:
-; 0000 0029       minute++;
+; 0000 002B       minute++;
 	INC  R11
-; 0000 002A   }
+; 0000 002C   }
 _0x9:
-; 0000 002B   else
+; 0000 002D   else
 	RJMP _0xA
 _0x5:
-; 0000 002C     second++;
+; 0000 002E     second++;
 	INC  R13
-; 0000 002D 
-; 0000 002E   if ((day > 30) & (month > 6))
+; 0000 002F 
+; 0000 0030   if ((day > 30) & (month > 6))
 _0xA:
 	MOV  R26,R12
 	LDI  R30,LOW(30)
@@ -1378,13 +1381,13 @@ _0xA:
 	CALL __GTB12
 	AND  R30,R0
 	BREQ _0xB
-; 0000 002F   {
-; 0000 0030     day = 1;
+; 0000 0031   {
+; 0000 0032     day = 1;
 	CALL SUBOPT_0x1
-; 0000 0031     month++;
-; 0000 0032   }
-; 0000 0033 
-; 0000 0034   if ((day > 31) & (month <= 6))
+; 0000 0033     month++;
+; 0000 0034   }
+; 0000 0035 
+; 0000 0036   if ((day > 31) & (month <= 6))
 _0xB:
 	MOV  R26,R12
 	LDI  R30,LOW(31)
@@ -1392,13 +1395,13 @@ _0xB:
 	CALL __LEB12
 	AND  R30,R0
 	BREQ _0xC
-; 0000 0035   {
-; 0000 0036     day = 1;
+; 0000 0037   {
+; 0000 0038     day = 1;
 	CALL SUBOPT_0x1
-; 0000 0037     month++;
-; 0000 0038   }
-; 0000 0039 
-; 0000 003A   if ((day > 29) & (month == 12))
+; 0000 0039     month++;
+; 0000 003A   }
+; 0000 003B 
+; 0000 003C   if ((day > 29) & (month == 12))
 _0xC:
 	MOV  R26,R12
 	LDI  R30,LOW(29)
@@ -1409,28 +1412,28 @@ _0xC:
 	CALL __EQB12
 	AND  R30,R0
 	BREQ _0xD
-; 0000 003B   {
-; 0000 003C     day = 1;
+; 0000 003D   {
+; 0000 003E     day = 1;
 	CALL SUBOPT_0x1
-; 0000 003D     month++;
-; 0000 003E   }
-; 0000 003F 
-; 0000 0040   if (month > 12)
+; 0000 003F     month++;
+; 0000 0040   }
+; 0000 0041 
+; 0000 0042   if (month > 12)
 _0xD:
 	LDS  R26,_month
 	CPI  R26,LOW(0xD)
 	BRLT _0xE
-; 0000 0041   {
-; 0000 0042     month = 1;
+; 0000 0043   {
+; 0000 0044     month = 1;
 	LDI  R30,LOW(1)
 	STS  _month,R30
-; 0000 0043     year++;
+; 0000 0045     year++;
 	CALL SUBOPT_0x2
 	ADIW R30,1
 	ST   -X,R31
 	ST   -X,R30
-; 0000 0044   }
-; 0000 0045 }
+; 0000 0046   }
+; 0000 0047 }
 _0xE:
 	LD   R30,Y+
 	OUT  SREG,R30
@@ -1444,114 +1447,114 @@ _0xE:
 ;
 ;// define interrupt 0
 ;interrupt[EXT_INT0] void ext_int0_isr(void)
-; 0000 0049 {
+; 0000 004B {
 _ext_int0_isr:
 ; .FSTART _ext_int0_isr
 	CALL SUBOPT_0x3
-; 0000 004A   capacity++;
+; 0000 004C   capacity++;
 	INC  R5
-; 0000 004B   n_khuruj++;
+; 0000 004D   n_khuruj++;
 	MOVW R30,R8
 	ADIW R30,1
 	MOVW R8,R30
-; 0000 004C 
-; 0000 004D   if ((capacity + reserved) >= 100)
+; 0000 004E 
+; 0000 004F   if ((capacity + reserved) >= 100)
 	CALL SUBOPT_0x4
 	BRLT _0xF
-; 0000 004E   {
-; 0000 004F     capacity = 100 - reserved;
+; 0000 0050   {
+; 0000 0051     capacity = 100 - reserved;
 	LDI  R30,LOW(100)
 	SUB  R30,R4
 	MOV  R5,R30
-; 0000 0050     _emp = 1;
+; 0000 0052     _emp = 1;
 	SET
 	RJMP _0xC2
-; 0000 0051   }
-; 0000 0052   else
+; 0000 0053   }
+; 0000 0054   else
 _0xF:
-; 0000 0053   {
-; 0000 0054     _emp = 0;
+; 0000 0055   {
+; 0000 0056     _emp = 0;
 	CLT
 _0xC2:
 	BLD  R2,1
-; 0000 0055   }
-; 0000 0056 
-; 0000 0057   if ((capacity) <= 0)
+; 0000 0057   }
+; 0000 0058 
+; 0000 0059   if ((capacity) <= 0)
 	LDI  R30,LOW(0)
 	CP   R30,R5
 	BRLT _0x11
-; 0000 0058   {
-; 0000 0059     capacity = 0;
+; 0000 005A   {
+; 0000 005B     capacity = 0;
 	CLR  R5
-; 0000 005A     _full = 1;
+; 0000 005C     _full = 1;
 	SET
 	RJMP _0xC3
-; 0000 005B   }
-; 0000 005C   else
+; 0000 005D   }
+; 0000 005E   else
 _0x11:
-; 0000 005D   {
-; 0000 005E     _full = 0;
+; 0000 005F   {
+; 0000 0060     _full = 0;
 	CLT
 _0xC3:
 	BLD  R2,0
-; 0000 005F   }
-; 0000 0060 }
+; 0000 0061   }
+; 0000 0062 }
 	RJMP _0xC6
 ; .FEND
 ;
 ;// define interrupt 1
 ;interrupt[EXT_INT1] void ext_int1_isr(void)
-; 0000 0064 {
+; 0000 0066 {
 _ext_int1_isr:
 ; .FSTART _ext_int1_isr
 	CALL SUBOPT_0x3
-; 0000 0065   capacity--;
+; 0000 0067   capacity--;
 	DEC  R5
-; 0000 0066   n_vurud++;
+; 0000 0068   n_vurud++;
 	MOVW R30,R6
 	ADIW R30,1
 	MOVW R6,R30
-; 0000 0067   if ((capacity) <= 0)
+; 0000 0069   if ((capacity) <= 0)
 	LDI  R30,LOW(0)
 	CP   R30,R5
 	BRLT _0x13
-; 0000 0068   {
-; 0000 0069     capacity = 0;
+; 0000 006A   {
+; 0000 006B     capacity = 0;
 	CLR  R5
-; 0000 006A     _full = 1;
+; 0000 006C     _full = 1;
 	SET
 	RJMP _0xC4
-; 0000 006B   }
-; 0000 006C   else
+; 0000 006D   }
+; 0000 006E   else
 _0x13:
-; 0000 006D   {
-; 0000 006E     _full = 0;
+; 0000 006F   {
+; 0000 0070     _full = 0;
 	CLT
 _0xC4:
 	BLD  R2,0
-; 0000 006F   }
-; 0000 0070 
-; 0000 0071   if ((capacity + reserved) >= 100)
+; 0000 0071   }
+; 0000 0072 
+; 0000 0073   if ((capacity + reserved) >= 100)
 	CALL SUBOPT_0x4
 	BRLT _0x15
-; 0000 0072   {
-; 0000 0073     capacity = 100 - reserved;
+; 0000 0074   {
+; 0000 0075     capacity = 100 - reserved;
 	LDI  R30,LOW(100)
 	SUB  R30,R4
 	MOV  R5,R30
-; 0000 0074     _emp = 1;
+; 0000 0076     _emp = 1;
 	SET
 	RJMP _0xC5
-; 0000 0075   }
-; 0000 0076   else
+; 0000 0077   }
+; 0000 0078   else
 _0x15:
-; 0000 0077   {
-; 0000 0078     _emp = 0;
+; 0000 0079   {
+; 0000 007A     _emp = 0;
 	CLT
 _0xC5:
 	BLD  R2,1
-; 0000 0079   }
-; 0000 007A }
+; 0000 007B   }
+; 0000 007C }
 _0xC6:
 	LD   R30,Y+
 	OUT  SREG,R30
@@ -1563,98 +1566,98 @@ _0xC6:
 ; .FEND
 ;
 ;void main(void)
-; 0000 007D {
+; 0000 007F {
 _main:
 ; .FSTART _main
-; 0000 007E 
-; 0000 007F   char buff[17], buff2[17];
 ; 0000 0080 
-; 0000 0081   // GICR|=0xC0;
-; 0000 0082   // MCUCR=0x0A;
-; 0000 0083   // MCUCSR=0x00;
-; 0000 0084   // GIFR=0xC0;
-; 0000 0085 
-; 0000 0086   GICR |= 0xC0;
+; 0000 0081   char line[17], line2[17];
+; 0000 0082 
+; 0000 0083   // GICR|=0xC0;
+; 0000 0084   // MCUCR=0x0A;
+; 0000 0085   // MCUCSR=0x00;
+; 0000 0086   // GIFR=0xC0;
+; 0000 0087 
+; 0000 0088   GICR |= 0xC0;
 	SBIW R28,34
-;	buff -> Y+17
-;	buff2 -> Y+0
+;	line -> Y+17
+;	line2 -> Y+0
 	IN   R30,0x3B
 	ORI  R30,LOW(0xC0)
 	OUT  0x3B,R30
-; 0000 0087   MCUCR = 0x0B;
+; 0000 0089   MCUCR = 0x0B;
 	LDI  R30,LOW(11)
 	OUT  0x35,R30
-; 0000 0088   MCUCSR = 0x00;
+; 0000 008A   MCUCSR = 0x00;
 	LDI  R30,LOW(0)
 	OUT  0x34,R30
-; 0000 0089   GIFR = 0xC0;
+; 0000 008B   GIFR = 0xC0;
 	LDI  R30,LOW(192)
 	OUT  0x3A,R30
-; 0000 008A 
-; 0000 008B   // initilize lcd
-; 0000 008C   lcd_init(16);
+; 0000 008C 
+; 0000 008D   // initilize lcd
+; 0000 008E   lcd_init(16);
 	LDI  R26,LOW(16)
 	CALL _lcd_init
-; 0000 008D   lcd_clear();
+; 0000 008F   lcd_clear();
 	CALL _lcd_clear
-; 0000 008E   lcd_gotoxy(0, 1);
+; 0000 0090   lcd_gotoxy(0, 1);
 	CALL SUBOPT_0x5
-; 0000 008F   delay_ms(300);
+; 0000 0091   delay_ms(300);
 	LDI  R26,LOW(300)
 	LDI  R27,HIGH(300)
 	CALL _delay_ms
-; 0000 0090 
-; 0000 0091   ASSR = 0x08; // timer2
+; 0000 0092 
+; 0000 0093   ASSR = 0x08; // timer2
 	LDI  R30,LOW(8)
 	OUT  0x22,R30
-; 0000 0092   TCCR2 = 0x05;
+; 0000 0094   TCCR2 = 0x05;
 	LDI  R30,LOW(5)
 	OUT  0x25,R30
-; 0000 0093   TCNT2 = 0x00;
+; 0000 0095   TCNT2 = 0x00;
 	LDI  R30,LOW(0)
 	OUT  0x24,R30
-; 0000 0094   OCR2 = 0x00;
+; 0000 0096   OCR2 = 0x00;
 	OUT  0x23,R30
-; 0000 0095   TIMSK = 0x40;
+; 0000 0097   TIMSK = 0x40;
 	LDI  R30,LOW(64)
 	OUT  0x39,R30
-; 0000 0096 
-; 0000 0097   PORTA = (1 << DDD0) | (1 << DDD1) | (1 << DDD2) | (1 << DDD3) | (1 << DDD4);
+; 0000 0098 
+; 0000 0099   PORTA = (1 << DDD0) | (1 << DDD1) | (1 << DDD2) | (1 << DDD3) | (1 << DDD4);
 	LDI  R30,LOW(31)
 	OUT  0x1B,R30
-; 0000 0098 
-; 0000 0099   day = i; // i in epprom
+; 0000 009A 
+; 0000 009B   day = i; // i in epprom
 	CALL SUBOPT_0x6
 	MOV  R12,R30
-; 0000 009A 
-; 0000 009B #asm("sei")
+; 0000 009C 
+; 0000 009D #asm("sei")
 	sei
-; 0000 009C   capacity = capacity - reserved;
+; 0000 009E   capacity = capacity - reserved;
 	SUB  R5,R4
-; 0000 009D 
-; 0000 009E   while (1)
+; 0000 009F 
+; 0000 00A0   while (1)
 _0x17:
-; 0000 009F   {
-; 0000 00A0 
-; 0000 00A1     if (PINA .2 == 0)
+; 0000 00A1   {
+; 0000 00A2 
+; 0000 00A3     if (PINA .2 == 0)
 	SBIC 0x19,2
 	RJMP _0x1A
-; 0000 00A2     {
-; 0000 00A3       while (PINA .2 == 0)
+; 0000 00A4     {
+; 0000 00A5       while (PINA .2 == 0)
 _0x1B:
 	SBIS 0x19,2
-; 0000 00A4         ;
+; 0000 00A6         ;
 	RJMP _0x1B
-; 0000 00A5       ok();
+; 0000 00A7       ok();
 	RCALL _ok
-; 0000 00A6     }
-; 0000 00A7 
-; 0000 00A8     if (hour == 0 & minute == 0 & second == 0)
+; 0000 00A8     }
+; 0000 00A9 
+; 0000 00AA     if (hour == 0 & minute == 0 & second == 0)
 _0x1A:
 	CALL SUBOPT_0x7
 	BREQ _0x1E
-; 0000 00A9     { //  data will save   in 0:0:00
-; 0000 00AA       vurud_stat[i] = n_vurud;
+; 0000 00AB     { //  data will save   in 0:0:00
+; 0000 00AC       vurud_stat[i] = n_vurud;
 	CALL SUBOPT_0x6
 	LDI  R26,LOW(_vurud_stat)
 	LDI  R27,HIGH(_vurud_stat)
@@ -1665,7 +1668,7 @@ _0x1A:
 	ADC  R27,R31
 	MOVW R30,R6
 	CALL __EEPROMWRW
-; 0000 00AB       khuruj_stat[i] = n_khuruj;
+; 0000 00AD       khuruj_stat[i] = n_khuruj;
 	CALL SUBOPT_0x6
 	LDI  R26,LOW(_khuruj_stat)
 	LDI  R27,HIGH(_khuruj_stat)
@@ -1676,38 +1679,38 @@ _0x1A:
 	ADC  R27,R31
 	MOVW R30,R8
 	CALL __EEPROMWRW
-; 0000 00AC       i++;
+; 0000 00AE       i++;
 	CALL SUBOPT_0x6
 	SUBI R30,-LOW(1)
 	CALL __EEPROMWRB
-; 0000 00AD 
-; 0000 00AE       if (i > 30) // 30 31 29 yek mah
+; 0000 00AF 
+; 0000 00B0       if (i > 30) // 30 31 29 yek mah
 	CALL SUBOPT_0x6
 	CPI  R30,LOW(0x1F)
 	BRLO _0x1F
-; 0000 00AF         i = 0;
+; 0000 00B1         i = 0;
 	LDI  R26,LOW(_i)
 	LDI  R27,HIGH(_i)
 	LDI  R30,LOW(0)
 	CALL __EEPROMWRB
-; 0000 00B0 
-; 0000 00B1       while (hour == 0 & minute == 0 & second == 0)
+; 0000 00B2 
+; 0000 00B3       while (hour == 0 & minute == 0 & second == 0)
 _0x1F:
 _0x20:
 	CALL SUBOPT_0x7
 	BREQ _0x22
-; 0000 00B2       {
-; 0000 00B3         lcd_clear();
+; 0000 00B4       {
+; 0000 00B5         lcd_clear();
 	CALL _lcd_clear
-; 0000 00B4         lcd_putsf("saving data");
+; 0000 00B6         lcd_putsf("saving data");
 	__POINTW2FN _0x0,0
 	CALL _lcd_putsf
-; 0000 00B5       }
+; 0000 00B7       }
 	RJMP _0x20
 _0x22:
-; 0000 00B6     }
-; 0000 00B7 
-; 0000 00B8     sprintf(buff, "Z=%d %d/%d/%d", capacity, year, month, day);
+; 0000 00B8     }
+; 0000 00B9 
+; 0000 00BA     sprintf(line, "Cap=%d %d/%d/%d", capacity, year, month, day);
 _0x1E:
 	MOVW R30,R28
 	ADIW R30,17
@@ -1726,9 +1729,9 @@ _0x1E:
 	LDI  R24,16
 	CALL _sprintf
 	ADIW R28,20
-; 0000 00B9     sprintf(buff2, "%d:%d:%d  R=%d ", hour, minute, second, reserved);
+; 0000 00BB     sprintf(line2, "%d:%d:%d  R=%d ", hour, minute, second, reserved);
 	CALL SUBOPT_0xA
-	__POINTW1FN _0x0,26
+	__POINTW1FN _0x0,28
 	ST   -Y,R31
 	ST   -Y,R30
 	MOV  R30,R10
@@ -1742,38 +1745,36 @@ _0x1E:
 	LDI  R24,16
 	CALL _sprintf
 	ADIW R28,20
-; 0000 00BA 
-; 0000 00BB     lcd_clear();
+; 0000 00BC     // sprintf(line, "%d/%d/%d  %d:%d:%d", year, month, day, hour, minute, second);
+; 0000 00BD     // sprintf(line2, "Cap=%d   R=%d ", capacity, reserved);
+; 0000 00BE 
+; 0000 00BF     lcd_clear();
 	CALL _lcd_clear
-; 0000 00BC 
-; 0000 00BD     lcd_puts(buff);
+; 0000 00C0 
+; 0000 00C1     lcd_puts(line);
 	MOVW R26,R28
 	ADIW R26,17
 	CALL _lcd_puts
-; 0000 00BE 
-; 0000 00BF     if (_full == 1)
+; 0000 00C2 
+; 0000 00C3     if (_full == 1)
 	SBRS R2,0
 	RJMP _0x23
-; 0000 00C0     {
-; 0000 00C1       lcd_putsf(" Full");
-	__POINTW2FN _0x0,42
+; 0000 00C4       lcd_putsf(" Full");
+	__POINTW2FN _0x0,44
 	CALL _lcd_putsf
-; 0000 00C2     }
-; 0000 00C3 
-; 0000 00C4     if (_emp == 1)
+; 0000 00C5 
+; 0000 00C6     if (_emp == 1)
 _0x23:
 	SBRS R2,1
 	RJMP _0x24
-; 0000 00C5     {
-; 0000 00C6       lcd_putsf(" Emp");
-	__POINTW2FN _0x0,48
+; 0000 00C7       lcd_putsf(" Emp");
+	__POINTW2FN _0x0,50
 	CALL _lcd_putsf
-; 0000 00C7     }
 ; 0000 00C8 
 ; 0000 00C9     lcd_gotoxy(0, 1);
 _0x24:
 	CALL SUBOPT_0x5
-; 0000 00CA     lcd_puts(buff2);
+; 0000 00CA     lcd_puts(line2);
 	CALL SUBOPT_0xB
 ; 0000 00CB     delay_ms(25);
 	CALL SUBOPT_0xC
@@ -1803,7 +1804,7 @@ _0x26:
 ; 0000 00D7       lcd_clear();
 	CALL _lcd_clear
 ; 0000 00D8       lcd_putsf("Time Setting >>");
-	__POINTW2FN _0x0,53
+	__POINTW2FN _0x0,55
 	CALL _lcd_putsf
 ; 0000 00D9     }
 ; 0000 00DA 
@@ -1815,7 +1816,7 @@ _0x29:
 ; 0000 00DD       lcd_clear();
 	CALL _lcd_clear
 ; 0000 00DE       lcd_putsf("IN&OUT Search >>");
-	__POINTW2FN _0x0,69
+	__POINTW2FN _0x0,71
 	CALL _lcd_putsf
 ; 0000 00DF     }
 ; 0000 00E0 
@@ -1827,7 +1828,7 @@ _0x2A:
 ; 0000 00E3       lcd_clear();
 	CALL _lcd_clear
 ; 0000 00E4       lcd_putsf("Reserve_Park >>");
-	__POINTW2FN _0x0,86
+	__POINTW2FN _0x0,88
 	CALL _lcd_putsf
 ; 0000 00E5     }
 ; 0000 00E6 
@@ -1839,7 +1840,7 @@ _0x2B:
 ; 0000 00E9       lcd_clear();
 	CALL _lcd_clear
 ; 0000 00EA       lcd_putsf("Set data >>");
-	__POINTW2FN _0x0,102
+	__POINTW2FN _0x0,104
 	CALL _lcd_putsf
 ; 0000 00EB     }
 ; 0000 00EC 
@@ -1972,7 +1973,7 @@ _0x46:
 ; 0000 0125     {
 ; 0000 0126       sprintf(buff, "Set min=%d  >", minute);
 	CALL SUBOPT_0xA
-	__POINTW1FN _0x0,114
+	__POINTW1FN _0x0,116
 	ST   -Y,R31
 	ST   -Y,R30
 	MOV  R30,R11
@@ -1989,7 +1990,7 @@ _0x49:
 ; 0000 012C     {
 ; 0000 012D       sprintf(buff, "Set hour=%d  >", hour);
 	CALL SUBOPT_0xA
-	__POINTW1FN _0x0,128
+	__POINTW1FN _0x0,130
 	ST   -Y,R31
 	ST   -Y,R30
 	MOV  R30,R10
@@ -2360,7 +2361,7 @@ _0x74:
 	ADIW R30,19
 	ST   -Y,R31
 	ST   -Y,R30
-	__POINTW1FN _0x0,143
+	__POINTW1FN _0x0,145
 	ST   -Y,R31
 	ST   -Y,R30
 	CALL SUBOPT_0x9
@@ -2382,7 +2383,7 @@ _0x74:
 	ADIW R30,2
 	ST   -Y,R31
 	ST   -Y,R30
-	__POINTW1FN _0x0,153
+	__POINTW1FN _0x0,155
 	ST   -Y,R31
 	ST   -Y,R30
 	MOV  R30,R16
@@ -2451,7 +2452,7 @@ _0x85:
 ; 0000 01DD   {
 ; 0000 01DE     sprintf(buff, "Reserved=%d", reserved);
 	CALL SUBOPT_0xA
-	__POINTW1FN _0x0,166
+	__POINTW1FN _0x0,168
 	ST   -Y,R31
 	ST   -Y,R30
 	MOV  R30,R4
@@ -2554,7 +2555,7 @@ _0x96:
 ; 0000 020C     {
 ; 0000 020D       sprintf(buff, "Set month=%d  >", month);
 	CALL SUBOPT_0x18
-	__POINTW1FN _0x0,178
+	__POINTW1FN _0x0,180
 	ST   -Y,R31
 	ST   -Y,R30
 	LDS  R30,_month
@@ -2571,7 +2572,7 @@ _0x99:
 ; 0000 0213     {
 ; 0000 0214       sprintf(buff, "Set day=%d  >", day);
 	CALL SUBOPT_0x18
-	__POINTW1FN _0x0,194
+	__POINTW1FN _0x0,196
 	ST   -Y,R31
 	ST   -Y,R30
 	MOV  R30,R12
@@ -2588,7 +2589,7 @@ _0x9A:
 ; 0000 021A     {
 ; 0000 021B       sprintf(buff, "Set year=%d  >", year);
 	CALL SUBOPT_0x18
-	__POINTW1FN _0x0,208
+	__POINTW1FN _0x0,210
 	ST   -Y,R31
 	ST   -Y,R30
 	CALL SUBOPT_0x9
