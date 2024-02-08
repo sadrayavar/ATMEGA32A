@@ -11,20 +11,23 @@ char time_set(void);
 char reserve_park(void);
 char set_data(void);
 
-signed char capacity = 100, reserved = 0;
-unsigned int n_vurud, n_khuruj; // maximum  65535  mashin dar ruz
-eeprom unsigned int vurud_stat[31], khuruj_stat[31];
-eeprom unsigned char i;
-bit _full = 0, _emp = 0;
+// parking related variables
+unsigned int n_vurud, n_khuruj;                      // maximum  65535  car per day
+eeprom unsigned int enter_array[31], exit_array[31]; // for saving enters and exists
+eeprom unsigned char i;                              // ?
+unsigned char const init_capacity = 10;
+signed char capacity = init_capacity, reserved = 0;
+bit is_full = 0, is_emp = 0;
 
-// date realted variables
+// date related variables
 signed char minute = 59, hour = 23, second = 10, day = 12, month = 12;
 signed int year = 1402;
 
-// define timer interrupt
+// define timer interrupt: clock and date logic
 interrupt[TIM2_OVF] void timer2_ovf_isr(void)
 {
 
+  // logic of second, minute, hour
   if (second == 59)
   {
     second = 0;
@@ -45,24 +48,36 @@ interrupt[TIM2_OVF] void timer2_ovf_isr(void)
   else
     second++;
 
-  if ((day > 30) & (month > 6))
+  // logic of day, month
+  if (month <= 6)
   {
-    day = 1;
-    month++;
+    if (day > 31)
+    {
+      day = 1;
+      month++;
+    }
+  }
+  else
+  {
+    if (month == 12)
+    {
+      if (day > 29)
+      {
+        day = 1;
+        month++;
+      }
+    }
+    else
+    {
+      if (day > 30)
+      {
+        day = 1;
+        month++;
+      }
+    }
   }
 
-  if ((day > 31) & (month <= 6))
-  {
-    day = 1;
-    month++;
-  }
-
-  if ((day > 29) & (month == 12))
-  {
-    day = 1;
-    month++;
-  }
-
+  // logic of year
   if (month > 12)
   {
     month = 1;
@@ -70,56 +85,59 @@ interrupt[TIM2_OVF] void timer2_ovf_isr(void)
   }
 }
 
-// define interrupt 0
+// define interrupt 0: for exiting cars
 interrupt[EXT_INT0] void ext_int0_isr(void)
 {
   capacity++;
-  n_khuruj++;
+  n_khuruj++; // Incrementing the count of cars leaving the parking
 
-  if ((capacity + reserved) >= 100)
+  // correct variables if they pass the inittilized capacity
+  if ((capacity + reserved) >= init_capacity)
   {
-    capacity = 100 - reserved;
-    _emp = 1;
+    capacity = init_capacity - reserved;
+    is_emp = 1;
   }
   else
   {
-    _emp = 0;
+    is_emp = 0;
   }
 
-  if ((capacity) <= 0)
+  // check if the parking is full
+  if (capacity <= 0)
   {
     capacity = 0;
-    _full = 1;
+    is_full = 1;
   }
   else
   {
-    _full = 0;
+    is_full = 0;
   }
 }
 
-// define interrupt 1
+// define interrupt 1: for entering cars
 interrupt[EXT_INT1] void ext_int1_isr(void)
 {
   capacity--;
   n_vurud++;
+
   if ((capacity) <= 0)
   {
     capacity = 0;
-    _full = 1;
+    is_full = 1;
   }
   else
   {
-    _full = 0;
+    is_full = 0;
   }
 
-  if ((capacity + reserved) >= 100)
+  if ((capacity + reserved) >= init_capacity)
   {
-    capacity = 100 - reserved;
-    _emp = 1;
+    capacity = init_capacity - reserved;
+    is_emp = 1;
   }
   else
   {
-    _emp = 0;
+    is_emp = 0;
   }
 }
 
@@ -167,10 +185,11 @@ void main(void)
       ok();
     }
 
+    // save the enter and exits at the end of the day
     if (hour == 0 & minute == 0 & second == 0)
     { //  data will save   in 0:0:00
-      vurud_stat[i] = n_vurud;
-      khuruj_stat[i] = n_khuruj;
+      enter_array[i] = n_vurud;
+      exit_array[i] = n_khuruj;
       i++;
 
       if (i > 30) // 30 31 29 yek mah
@@ -192,10 +211,10 @@ void main(void)
 
     lcd_puts(line);
 
-    if (_full == 1)
+    if (is_full == 1)
       lcd_putsf(" Full");
 
-    if (_emp == 1)
+    if (is_emp == 1)
       lcd_putsf(" Emp");
 
     lcd_gotoxy(0, 1);
@@ -451,7 +470,7 @@ char in_out_search(void)
     }
 
     sprintf(buff, "%d/%d/%d ", year, t_month, i_temp);
-    sprintf(buff2, "in=%d out=%d", vurud_stat[i_temp], khuruj_stat[i_temp]);
+    sprintf(buff2, "in=%d out=%d", enter_array[i_temp], exit_array[i_temp]);
 
     lcd_clear();
     lcd_puts(buff);
@@ -486,7 +505,7 @@ char reserve_park(void)
       reserved++;
     }
 
-    if (reserved >= 100)
+    if (reserved >= init_capacity)
     {
       reserved = 99;
     }

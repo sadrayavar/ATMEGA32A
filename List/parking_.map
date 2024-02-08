@@ -11,19 +11,19 @@ _lcd_maxx                                                                       
 EEPROM Allocation [bytes]
 Variable                                                                          Address   Size
 ------------------------------------------------------------------------------------------------
-vurud_stat                                                                        0x0000      62
-khuruj_stat                                                                       0x003E      62
+enter_array                                                                       0x0000      62
+exit_array                                                                        0x003E      62
 i                                                                                 0x007C       1
 
 Register Allocation
 Variable                                                                          Register  Size
 ------------------------------------------------------------------------------------------------
-capacity                                                                          R5           1
-reserved                                                                          R4           1
-n_vurud                                                                           R6,R7        2
-n_khuruj                                                                          R8,R9        2
-_full                                                                             R2.0      1bit
-_emp                                                                              R2.1      1bit
+n_vurud                                                                           R4,R5        2
+n_khuruj                                                                          R6,R7        2
+capacity                                                                          R9           1
+reserved                                                                          R8           1
+is_full                                                                           R2.0      1bit
+is_emp                                                                            R2.1      1bit
 minute                                                                            R11          1
 hour                                                                              R10          1
 second                                                                            R13          1
@@ -32,25 +32,25 @@ day                                                                             
 FLASH Allocation [words]
 Function                                                                          Address   Size
 ------------------------------------------------------------------------------------------------
-timer2_ovf_isr                                                                    0x000EC     79
-ext_int0_isr                                                                      0x0013B     25
-ext_int1_isr                                                                      0x00154     31
-main                                                                              0x00173    165
-ok                                                                                0x00218     87
-time_set                                                                          0x0026F     97
-in_out_search                                                                     0x002D0    199
-reserve_park                                                                      0x00397     42
-set_data                                                                          0x003C1    172
-put_buff_G100                                                                     0x0046D     64
-_print_G100                                                                       0x004AD    308
-sprintf                                                                           0x005E1     52
-_lcd_write_nibble_G101                                                            0x00615     37
-_lcd_write_data                                                                   0x0063A     12
-lcd_gotoxy                                                                        0x00646     17
-lcd_clear                                                                         0x00657     14
-lcd_putchar                                                                       0x00665     32
-lcd_puts                                                                          0x00685     15
-lcd_putsf                                                                         0x00694     19
-lcd_init                                                                          0x006A7     48
-strlen                                                                            0x006D7     12
-strlenf                                                                           0x006E3     13
+timer2_ovf_isr                                                                    0x000EC     58
+ext_int0_isr                                                                      0x00126     25
+ext_int1_isr                                                                      0x0013F     31
+main                                                                              0x0015E    165
+ok                                                                                0x00203     87
+time_set                                                                          0x0025A     97
+in_out_search                                                                     0x002BB    199
+reserve_park                                                                      0x00382     48
+set_data                                                                          0x003B2    172
+put_buff_G100                                                                     0x0045E     64
+_print_G100                                                                       0x0049E    308
+sprintf                                                                           0x005D2     52
+_lcd_write_nibble_G101                                                            0x00606     37
+_lcd_write_data                                                                   0x0062B     12
+lcd_gotoxy                                                                        0x00637     17
+lcd_clear                                                                         0x00648     14
+lcd_putchar                                                                       0x00656     32
+lcd_puts                                                                          0x00676     15
+lcd_putsf                                                                         0x00685     19
+lcd_init                                                                          0x00698     48
+strlen                                                                            0x006C8     12
+strlenf                                                                           0x006D4     13
