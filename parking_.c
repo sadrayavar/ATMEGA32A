@@ -158,9 +158,10 @@ void main(void)
   while (1)
   {
 
-    if (PINA.2 == 0)
+    if (PINA .2 == 0)
     {
-      while (PINA.2 == 0);
+      while (PINA .2 == 0)
+        ;
       ok();
     }
 
@@ -234,41 +235,47 @@ char ok(void)
       lcd_putsf("Set data >>");
     }
 
-    if (PINA.3 == 0)
+    if (PINA .3 == 0)
     { // NEXT
-      while (PINA.3 == 0);
+      while (PINA .3 == 0)
+        ;
       _chose++;
       if (_chose >= 4)
         _chose = 0;
     }
 
-    if (PINA.4 == 0)
+    if (PINA .4 == 0)
     { // Back
-      while (PINA.4 == 0);
+      while (PINA .4 == 0)
+        ;
       return 0;
     }
 
-    if (PINA.2 == 0 & _chose == 0)
+    if (PINA .2 == 0 & _chose == 0)
     { // chose time_setting
-      while (PINA.2 == 0);
+      while (PINA .2 == 0)
+        ;
       time_set();
     }
 
-    if (PINA.2 == 0 & _chose == 1)
+    if (PINA .2 == 0 & _chose == 1)
     { // chose in_out_search
-      while (PINA.2 == 0);
+      while (PINA .2 == 0)
+        ;
       in_out_search();
     }
 
-    if (PINA.2 == 0 & _chose == 2)
+    if (PINA .2 == 0 & _chose == 2)
     { // chose reserve
-      while (PINA.2 == 0);
+      while (PINA .2 == 0)
+        ;
       reserve_park();
     }
 
-    if (PINA.2 == 0 & _chose == 3)
+    if (PINA .2 == 0 & _chose == 3)
     { // chose set data
-      while (PINA.2 == 0);
+      while (PINA .2 == 0)
+        ;
       set_data();
     }
 
@@ -298,47 +305,53 @@ char time_set(void)
       lcd_puts(buff);
     }
 
-    if (PINA.1 == 0 & _chose == 0)
+    if (PINA .1 == 0 & _chose == 0)
     { // UP     min
-      while (PINA.1 == 0);
+      while (PINA .1 == 0)
+        ;
       minute++;
       if (minute > 59)
         minute = 0;
     }
 
-    if (PINA.0 == 0 & _chose == 0)
+    if (PINA .0 == 0 & _chose == 0)
     { // DOWN    min
-      while (PINA.0 == 0);
+      while (PINA .0 == 0)
+        ;
       minute--;
       if (minute < 0)
         minute = 59;
     }
 
-    if (PINA.1 == 0 & _chose == 1)
+    if (PINA .1 == 0 & _chose == 1)
     { // UP    hour
-      while (PINA.1 == 0);
+      while (PINA .1 == 0)
+        ;
       hour++;
       if (hour > 23)
         hour = 0;
     }
 
-    if (PINA.0 == 0 & _chose == 1)
+    if (PINA .0 == 0 & _chose == 1)
     { // DOWN    hour
-      while (PINA.0 == 0);
+      while (PINA .0 == 0)
+        ;
       hour--;
       if (hour < 0)
         hour = 23;
     }
 
-    if (PINA.3 == 0)
+    if (PINA .3 == 0)
     { // NEXT
-      while (PINA.3 == 0);
+      while (PINA .3 == 0)
+        ;
       _chose = !_chose;
     }
 
-    if (PINA.4 == 0)
+    if (PINA .4 == 0)
     { // Back
-      while (PINA.4 == 0);
+      while (PINA .4 == 0)
+        ;
       return 0;
     }
 
@@ -355,9 +368,10 @@ char in_out_search(void)
   while (1)
   {
 
-    if (PINA.1 == 0)
+    if (PINA .1 == 0)
     { // UP
-      while (PINA.1 == 0);
+      while (PINA .1 == 0)
+        ;
       i_temp++;
 
       if (i_temp > i & bit_m == 0)
@@ -395,9 +409,10 @@ char in_out_search(void)
         t_month = 1;
     }
 
-    if (PINA.0 == 0)
+    if (PINA .0 == 0)
     { // DOWN
-      while (PINA.0 == 0);
+      while (PINA .0 == 0)
+        ;
       i_temp--;
 
       if (i_temp == 0 & bit_m == 0)
@@ -445,9 +460,10 @@ char in_out_search(void)
     lcd_gotoxy(0, 1);
     lcd_puts(buff2);
 
-    if (PINA.4 == 0)
+    if (PINA .4 == 0)
     { // Back
-      while (PINA.4 == 0);
+      while (PINA .4 == 0)
+        ;
       return 0;
     }
     delay_ms(25);
@@ -466,9 +482,10 @@ char reserve_park(void)
     lcd_clear();
     lcd_puts(buff);
 
-    if (PINA.1 == 0)
+    if (PINA .1 == 0)
     { // UP
-      while (PINA.1 == 0);
+      while (PINA .1 == 0)
+        ;
       reserved++;
     }
 
@@ -477,9 +494,10 @@ char reserve_park(void)
       reserved = 99;
     }
 
-    if (PINA.0 == 0)
+    if (PINA .0 == 0)
     { // DOWN
-      while (PINA.0 == 0);
+      while (PINA .0 == 0)
+        ;
       reserved--;
     }
 
@@ -488,9 +506,10 @@ char reserve_park(void)
       reserved = 0;
     }
 
-    if (PINA.4 == 0)
+    if (PINA .4 == 0)
     { // Back
-      while (PINA.4 == 0);
+      while (PINA .4 == 0)
+        ;
       return 0;
     }
     delay_ms(25);
@@ -526,67 +545,75 @@ char set_data(void)
       lcd_puts(buff);
     }
 
-    if (PINA.1 == 0 & _chose == 1)
+    if (PINA .1 == 0 & _chose == 1)
     { // UP     month
-      while (PINA.1 == 0);
+      while (PINA .1 == 0)
+        ;
       month++;
       if (month > 12)
         month = 1;
     }
 
-    if (PINA.0 == 0 & _chose == 1)
+    if (PINA .0 == 0 & _chose == 1)
     { // DOWN    month
-      while (PINA.0 == 0);
+      while (PINA .0 == 0)
+        ;
       month--;
       if (month < 1)
         month = 12;
     }
 
-    if (PINA.1 == 0 & _chose == 0)
+    if (PINA .1 == 0 & _chose == 0)
     { // UP    day
-      while (PINA.1 == 0);
+      while (PINA .1 == 0)
+        ;
       day++;
       i = day;
       if (day > 31)
         day = 1;
     }
 
-    if (PINA.0 == 0 & _chose == 0)
+    if (PINA .0 == 0 & _chose == 0)
     { // DOWN    day
-      while (PINA.0 == 0);
+      while (PINA .0 == 0)
+        ;
       day--;
       i = day;
       if (day < 1)
         day = 31;
     }
 
-    if (PINA.0 == 0 & _chose == 2)
+    if (PINA .0 == 0 & _chose == 2)
     { // DOWN    year
-      while (PINA.0 == 0);
+      while (PINA .0 == 0)
+        ;
       year--;
       if (year < 1)
         year = 1300;
     }
 
-    if (PINA.1 == 0 & _chose == 2)
+    if (PINA .1 == 0 & _chose == 2)
     { // UP    year
-      while (PINA.1 == 0);
+      while (PINA .1 == 0)
+        ;
       year++;
       // if(year>1404)
       // year=0;
     }
 
-    if (PINA.3 == 0)
+    if (PINA .3 == 0)
     { // NEXT
-      while (PINA.3 == 0);
+      while (PINA .3 == 0)
+        ;
       _chose++;
       if (_chose >= 3)
         _chose = 0;
     }
 
-    if (PINA.4 == 0)
+    if (PINA .4 == 0)
     { // Back
-      while (PINA.4 == 0);
+      while (PINA .4 == 0)
+        ;
       return 0;
     }
 
