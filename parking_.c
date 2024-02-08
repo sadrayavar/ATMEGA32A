@@ -4,22 +4,22 @@
 #include <alcd.h>
 #define xtal 8000000
 
-// prototyping
-char setting(void);
+// prototyping functions
+char ok(void);
 char in_out_search(void);
 char time_set(void);
 char reserve_park(void);
 char set_data(void);
 
-signed char capa = 100;
-signed char _res = 0;
+signed char capacity = 100, reserved = 0;
 unsigned int n_vurud, n_khuruj; // maximum  65535  mashin dar ruz
 eeprom unsigned int vurud_stat[31], khuruj_stat[31];
 eeprom unsigned char i;
 bit _full = 0, _emp = 0;
-signed char minute = 58, hour = 23, second = 50, day = 1, month = 3;
-signed int year = 1394;
+signed char minute = 00, hour = 00, second = 00, day = 1, month = 1;
+signed int year = 1402;
 
+// define timer interrupt
 interrupt[TIM2_OVF] void timer2_ovf_isr(void)
 {
 
@@ -68,14 +68,15 @@ interrupt[TIM2_OVF] void timer2_ovf_isr(void)
   }
 }
 
+// define interrupt 0
 interrupt[EXT_INT0] void ext_int0_isr(void)
 {
-  capa++;
+  capacity++;
   n_khuruj++;
 
-  if ((capa + _res) >= 100)
+  if ((capacity + reserved) >= 100)
   {
-    capa = 100 - _res;
+    capacity = 100 - reserved;
     _emp = 1;
   }
   else
@@ -83,9 +84,9 @@ interrupt[EXT_INT0] void ext_int0_isr(void)
     _emp = 0;
   }
 
-  if ((capa) <= 0)
+  if ((capacity) <= 0)
   {
-    capa = 0;
+    capacity = 0;
     _full = 1;
   }
   else
@@ -96,11 +97,11 @@ interrupt[EXT_INT0] void ext_int0_isr(void)
 
 interrupt[EXT_INT1] void ext_int1_isr(void)
 {
-  capa--;
+  capacity--;
   n_vurud++;
-  if ((capa) <= 0)
+  if ((capacity) <= 0)
   {
-    capa = 0;
+    capacity = 0;
     _full = 1;
   }
   else
@@ -108,9 +109,9 @@ interrupt[EXT_INT1] void ext_int1_isr(void)
     _full = 0;
   }
 
-  if ((capa + _res) >= 100)
+  if ((capacity + reserved) >= 100)
   {
-    capa = 100 - _res;
+    capacity = 100 - reserved;
     _emp = 1;
   }
   else
@@ -134,11 +135,10 @@ void main(void)
   MCUCSR = 0x00;
   GIFR = 0xC0;
 
+  // initilize lcd
   lcd_init(16);
   lcd_clear();
-  lcd_putsf("Melec.ir");
   lcd_gotoxy(0, 1);
-  lcd_putsf("Parking ABC ");
   delay_ms(300);
 
   ASSR = 0x08; // timer2
@@ -152,7 +152,7 @@ void main(void)
   day = i; // i in epprom
 
 #asm("sei")
-  capa = capa - _res;
+  capacity = capacity - reserved;
 
   while (1)
   {
@@ -161,7 +161,7 @@ void main(void)
     {
       while (PINA .2 == 0)
         ;
-      setting();
+      ok();
     }
 
     if (hour == 0 & minute == 0 & second == 0)
@@ -180,8 +180,8 @@ void main(void)
       }
     }
 
-    sprintf(buff, "Z=%d %d/%d/%d", capa, year, month, day);
-    sprintf(buff2, "%d:%d:%d  R=%d ", hour, minute, second, _res);
+    sprintf(buff, "Z=%d %d/%d/%d", capacity, year, month, day);
+    sprintf(buff2, "%d:%d:%d  R=%d ", hour, minute, second, reserved);
 
     lcd_clear();
 
@@ -189,13 +189,11 @@ void main(void)
 
     if (_full == 1)
     {
-
       lcd_putsf(" Full");
     }
 
     if (_emp == 1)
     {
-
       lcd_putsf(" Emp");
     }
 
@@ -205,9 +203,9 @@ void main(void)
   }
 }
 
-/// Functions 4 setting and...
+/// Functions 4 ok and...
 
-char setting(void)
+char ok(void)
 {
   char _chose = 0;
   while (1)
@@ -480,7 +478,7 @@ char reserve_park(void)
 
   while (1)
   {
-    sprintf(buff, "Reserved=%d", _res);
+    sprintf(buff, "Reserved=%d", reserved);
     lcd_clear();
     lcd_puts(buff);
 
@@ -488,24 +486,24 @@ char reserve_park(void)
     { // UP
       while (PINA .1 == 0)
         ;
-      _res++;
+      reserved++;
     }
 
-    if (_res >= 100)
+    if (reserved >= 100)
     {
-      _res = 99;
+      reserved = 99;
     }
 
     if (PINA .0 == 0)
     { // DOWN
       while (PINA .0 == 0)
         ;
-      _res--;
+      reserved--;
     }
 
-    if (_res <= 0)
+    if (reserved <= 0)
     {
-      _res = 0;
+      reserved = 0;
     }
 
     if (PINA .4 == 0)
