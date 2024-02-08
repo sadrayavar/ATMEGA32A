@@ -12,10 +12,10 @@ char reserve_park(void);
 char set_date(void);
 
 // parking related variables
-unsigned int n_vurud = 0, n_khuruj = 0;
-eeprom unsigned int enter_array[31] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-eeprom unsigned int exit_array[31] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-eeprom unsigned char day_index = 0;
+unsigned int number_of_enters = 0, number_of_exits = 0;
+eeprom unsigned int enter_array[32] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+eeprom unsigned int exit_array[32] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+eeprom char day_index = -1;
 unsigned char const init_capacity = 10;
 signed char capacity = init_capacity, reserved = 0;
 bit is_full = 0, is_empty = 1;
@@ -98,7 +98,7 @@ interrupt[EXT_INT0] void ext_int0_isr(void)
   {
 
     capacity++;
-    n_khuruj++;
+    number_of_exits++;
 
     // check if the parking is empty
     if ((capacity + reserved) >= init_capacity)
@@ -137,7 +137,7 @@ interrupt[EXT_INT1] void ext_int1_isr(void)
   {
 
     capacity--;
-    n_vurud++;
+    number_of_enters++;
 
     // checking if the parking is full
     if ((capacity) <= 0)
@@ -203,13 +203,23 @@ void main(void)
 
     // save the enter and exits at the end of the day
     if (hour == 0 & minute == 0 & second == 0)
-    { //  data will save   in 0:0:00
-      enter_array[day_index] = n_vurud;
-      exit_array[day_index] = n_khuruj;
-      day_index++;
+    {
+      if (day_index >= 31) // shift the data if array is full
+      {
+        char i = 0;
+        while (i < 31)
+        {
+          enter_array[i] = enter_array[i + 1];
+          exit_array[i] = exit_array[i + 1];
+          i++;
+        }
+      }
+      else // increment array index
+        day_index++;
 
-      if (day_index > 30) // 30 31 29 yek mah
-        day_index = 0;
+      // save the data
+      enter_array[day_index] = number_of_enters;
+      exit_array[day_index] = number_of_exits;
 
       while (hour == 0 & minute == 0 & second == 0)
       {
@@ -388,12 +398,11 @@ char set_time(void)
 char in_out_search(void)
 {
   char line[17], line2[17];
-  char temp_year = year, temp_month = month, temp_day = day_index;
+  int temp_year = year, temp_month = month, temp_day = day;
   bit bit_m = 0;
 
   while (1)
   {
-
     // UP
     if (PINA .1 == 0)
     {
@@ -401,39 +410,41 @@ char in_out_search(void)
         ;
       temp_day++;
 
-      if (temp_day > day_index & bit_m == 0)
+      // logic of day, month
+      if (temp_month <= 6)
       {
-        temp_day = day_index;
-        temp_month--;
-        bit_m = 1;
+        if (temp_day > 31)
+        {
+          temp_day = 1;
+          temp_month++;
+        }
+      }
+      else
+      {
+        if (temp_month == 12)
+        {
+          if (temp_day > 29)
+          {
+            temp_day = 1;
+            temp_month++;
+          }
+        }
+        else
+        {
+          if (temp_day > 30)
+          {
+            temp_day = 1;
+            temp_month++;
+          }
+        }
       }
 
-      if (temp_month <= 6 & temp_day > 31 & bit_m == 1)
-      {
-        temp_day = 1;
-        temp_month++;
-        bit_m = 0;
-      }
-
-      if (temp_month > 6 & temp_day > 30 & bit_m == 1)
-      {
-        temp_day = 1;
-        temp_month++;
-        bit_m = 0;
-      }
-
-      if (temp_month == 12 & temp_day > 29 & bit_m == 1)
-      {
-        temp_day = 1;
-        temp_month++;
-        bit_m = 0;
-      }
-
-      if (temp_month == 0)
-        temp_month = 12;
-
+      // logic of year
       if (temp_month > 12)
+      {
         temp_month = 1;
+        temp_year++;
+      }
     }
 
     // DOWN
@@ -441,47 +452,30 @@ char in_out_search(void)
     {
       while (PINA .0 == 0)
         ;
-      temp_day--;
 
-      if (temp_day == 0 & bit_m == 0)
+      if (temp_day == 1)
       {
-
-        temp_month--;
-
-        if (temp_month == 0)
+        if (temp_month == 1)
+        {
           temp_month = 12;
+          temp_year--;
+        }
+        else
+          temp_month--;
 
-        if (temp_month > 12)
-          temp_month = 1;
-
-        if (temp_month <= 6)
+        if (1 <= temp_month && temp_month <= 6)
           temp_day = 31;
-
-        if (temp_month > 6)
+        if (7 <= temp_month && temp_month <= 11)
           temp_day = 30;
-
         if (temp_month == 12)
           temp_day = 29;
-
-        bit_m = 1;
       }
-
-      if (temp_day < day_index & bit_m == 1)
-      {
-        temp_day = day_index;
-        temp_month++;
-        bit_m = 0;
-      }
-
-      if (temp_month == 0)
-        temp_month = 12;
-
-      if (temp_month > 12)
-        temp_month = 1;
+      else
+        temp_day--;
     }
 
-    sprintf(line, "%d/%d/%d ", temp_year, temp_month, temp_day);
-    sprintf(line2, "in=%d out=%d", enter_array[temp_day], exit_array[temp_day]);
+    sprintf(line, "%d/%d/%d", temp_year, temp_month, temp_day);
+    sprintf(line2, "in=%d out=%d", enter_array[day_index], exit_array[day_index]);
 
     lcd_clear();
     lcd_puts(line);
