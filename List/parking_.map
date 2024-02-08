@@ -1,30 +1,56 @@
-RAM Allocation
-Variable                                                          Address   Size
---------------------------------------------------------------------------------
-month                                                             0x0260       1
-year                                                              0x0261       2
-_base_y                                                           0x0263       4
-_lcd_x                                                            0x0267       1
-_lcd_y                                                            0x0268       1
-_lcd_maxx                                                         0x0269       1
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+month                                                                             0x0260       1
+year                                                                              0x0261       2
+_base_y                                                                           0x0263       4
+_lcd_x                                                                            0x0267       1
+_lcd_y                                                                            0x0268       1
+_lcd_maxx                                                                         0x0269       1
 
-EEPROM Allocation
-Variable                                                          Address   Size
---------------------------------------------------------------------------------
-vurud_stat                                                        0x0000      62
-khuruj_stat                                                       0x003E      62
-i                                                                 0x007C       1
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+vurud_stat                                                                        0x0000      62
+khuruj_stat                                                                       0x003E      62
+i                                                                                 0x007C       1
 
 Register Allocation
-Variable                                                          Register  Size
---------------------------------------------------------------------------------
-capa                                                              R5           1
-_res                                                              R4           1
-n_vurud                                                           R6,R7        2
-n_khuruj                                                          R8,R9        2
-_full                                                             R2.0      1bit
-_emp                                                              R2.1      1bit
-minute                                                            R11          1
-hour                                                              R10          1
-second                                                            R13          1
-day                                                               R12          1
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+capa                                                                              R5           1
+_res                                                                              R4           1
+n_vurud                                                                           R6,R7        2
+n_khuruj                                                                          R8,R9        2
+_full                                                                             R2.0      1bit
+_emp                                                                              R2.1      1bit
+minute                                                                            R11          1
+hour                                                                              R10          1
+second                                                                            R13          1
+day                                                                               R12          1
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+timer2_ovf_isr                                                                    0x000F6     79
+ext_int0_isr                                                                      0x00145     25
+ext_int1_isr                                                                      0x0015E     31
+main                                                                              0x0017D    173
+setting                                                                           0x0022A     87
+time_set                                                                          0x00281     97
+in_out_search                                                                     0x002E2    199
+reserve_park                                                                      0x003A9     42
+set_data                                                                          0x003D3    172
+put_buff_G100                                                                     0x0047F     64
+_print_G100                                                                       0x004BF    308
+sprintf                                                                           0x005F3     52
+_lcd_write_nibble_G101                                                            0x00627     37
+_lcd_write_data                                                                   0x0064C     12
+lcd_gotoxy                                                                        0x00658     17
+lcd_clear                                                                         0x00669     14
+lcd_putchar                                                                       0x00677     32
+lcd_puts                                                                          0x00697     15
+lcd_putsf                                                                         0x006A6     19
+lcd_init                                                                          0x006B9     48
+strlen                                                                            0x006E9     12
+strlenf                                                                           0x006F5     13
