@@ -133,7 +133,7 @@ WarningExternalDeclaredNeverDefined=1
 WarningUnknownPragma=1
 DebugBootLoader=0
 WatchAVR8LAutoVariables=0
-Build=338
+Build=340
 UseEEPROMLocation0=1
 IncludePath0=
 IncludePath1=
@@ -199,7 +199,7 @@ LibraryPath28=
 LibraryPath29=
 LibraryPath30=
 LibraryPath31=
-COFFileTimeStamp=1481137353
+COFFileTimeStamp=1481137545
 [Libraries]
 Use1Wire=0
 UseI2C=0
@@ -314,7 +314,7 @@ F2=C:\cvavr2\inc\mega32a.h
 F3=C:\cvavr2\inc\mega32_bits.h
 F4=C:\cvavr2\inc\stdarg.h
 [Bookmarks1]
-TimeStamp=1481137264
+TimeStamp=1481137538
 Row=0
 Column=0
 ScrollPosX=0
@@ -386,7 +386,7 @@ Blocks=0
 [CompilerDebug]
 RebuildAll=0
 LinkageInformationPresent=1
-Build=338
+Build=340
 UseEEPROMLocation0=1
 [BuildInfoCompiler]
 L1=Build configuration: Release
@@ -405,8 +405,8 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 338
-L18=11355 line(s) compiled
+L17=Build: 340
+L18=11327 line(s) compiled
 L19=No errors
 L20=No warnings
 L21=

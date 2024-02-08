@@ -249,40 +249,41 @@
 ;PCODE: $00000089 VOL: 0
 ;PCODE: $0000008A VOL: 0
 ;
+;// define interrupt 1
 ;interrupt[EXT_INT1] void ext_int1_isr(void)
-; 0000 0063 {
+; 0000 0064 {
 ;PCODE: $0000008B VOL: 0
 ;PCODE: $0000008C VOL: 0
-; 0000 0064   capacity--;
+; 0000 0065   capacity--;
 ;PCODE: $0000008D VOL: 0
-; 0000 0065   n_vurud++;
+; 0000 0066   n_vurud++;
 ;PCODE: $0000008E VOL: 0
 ;PCODE: $0000008F VOL: 0
 ;PCODE: $00000090 VOL: 0
-; 0000 0066   if ((capacity) <= 0)
+; 0000 0067   if ((capacity) <= 0)
 ;PCODE: $00000091 VOL: 0
 ;PCODE: $00000092 VOL: 0
 ;PCODE: $00000093 VOL: 0
-; 0000 0067   {
-; 0000 0068     capacity = 0;
+; 0000 0068   {
+; 0000 0069     capacity = 0;
 ;PCODE: $00000094 VOL: 0
-; 0000 0069     _full = 1;
+; 0000 006A     _full = 1;
 ;PCODE: $00000095 VOL: 0
 ;PCODE: $00000096 VOL: 0
 ;PCODE: $00000097 VOL: 0
-; 0000 006A   }
-; 0000 006B   else
+; 0000 006B   }
+; 0000 006C   else
 ;PCODE: $00000098 VOL: 0
 ;PCODE: $00000099 VOL: 0
-; 0000 006C   {
-; 0000 006D     _full = 0;
+; 0000 006D   {
+; 0000 006E     _full = 0;
 ;PCODE: $0000009A VOL: 0
 ;PCODE: $0000009B VOL: 0
 ;PCODE: $0000009C VOL: 0
-; 0000 006E   }
+; 0000 006F   }
 ;PCODE: $0000009D VOL: 0
-; 0000 006F 
-; 0000 0070   if ((capacity + reserved) >= 100)
+; 0000 0070 
+; 0000 0071   if ((capacity + reserved) >= 100)
 ;PCODE: $0000009E VOL: 0
 ;PCODE: $0000009F VOL: 0
 ;PCODE: $000000A0 VOL: 0
@@ -290,122 +291,121 @@
 ;PCODE: $000000A2 VOL: 0
 ;PCODE: $000000A3 VOL: 0
 ;PCODE: $000000A4 VOL: 0
-; 0000 0071   {
-; 0000 0072     capacity = 100 - reserved;
+; 0000 0072   {
+; 0000 0073     capacity = 100 - reserved;
 ;PCODE: $000000A5 VOL: 0
 ;PCODE: $000000A6 VOL: 0
 ;PCODE: $000000A7 VOL: 0
-; 0000 0073     _emp = 1;
+; 0000 0074     _emp = 1;
 ;PCODE: $000000A8 VOL: 0
 ;PCODE: $000000A9 VOL: 0
 ;PCODE: $000000AA VOL: 0
-; 0000 0074   }
-; 0000 0075   else
+; 0000 0075   }
+; 0000 0076   else
 ;PCODE: $000000AB VOL: 0
 ;PCODE: $000000AC VOL: 0
-; 0000 0076   {
-; 0000 0077     _emp = 0;
+; 0000 0077   {
+; 0000 0078     _emp = 0;
 ;PCODE: $000000AD VOL: 0
 ;PCODE: $000000AE VOL: 0
 ;PCODE: $000000AF VOL: 0
-; 0000 0078   }
+; 0000 0079   }
 ;PCODE: $000000B0 VOL: 0
-; 0000 0079 }
+; 0000 007A }
 ;PCODE: $000000B1 VOL: 0
 ;PCODE: $000000B2 VOL: 0
 ;PCODE: $000000B3 VOL: 0
 ;
 ;void main(void)
-; 0000 007C {
+; 0000 007D {
 ;PCODE: $000000B4 VOL: 0
-; 0000 007D 
-; 0000 007E   char buff[17], buff2[17];
-; 0000 007F 
-; 0000 0080   // GICR|=0xC0;
-; 0000 0081   // MCUCR=0x0A;
-; 0000 0082   // MCUCSR=0x00;
-; 0000 0083   // GIFR=0xC0;
-; 0000 0084 
-; 0000 0085   GICR |= 0xC0;
+; 0000 007E 
+; 0000 007F   char buff[17], buff2[17];
+; 0000 0080 
+; 0000 0081   // GICR|=0xC0;
+; 0000 0082   // MCUCR=0x0A;
+; 0000 0083   // MCUCSR=0x00;
+; 0000 0084   // GIFR=0xC0;
+; 0000 0085 
+; 0000 0086   GICR |= 0xC0;
 ;PCODE: $000000B5 VOL: 0
 ;	buff -> Y+17
 ;	buff2 -> Y+0
 ;PCODE: $000000B6 VOL: 0
 ;PCODE: $000000B7 VOL: 0
 ;PCODE: $000000B8 VOL: 0
-; 0000 0086   MCUCR = 0x0B;
+; 0000 0087   MCUCR = 0x0B;
 ;PCODE: $000000B9 VOL: 0
 ;PCODE: $000000BA VOL: 0
-; 0000 0087   MCUCSR = 0x00;
+; 0000 0088   MCUCSR = 0x00;
 ;PCODE: $000000BB VOL: 0
 ;PCODE: $000000BC VOL: 0
-; 0000 0088   GIFR = 0xC0;
+; 0000 0089   GIFR = 0xC0;
 ;PCODE: $000000BD VOL: 0
 ;PCODE: $000000BE VOL: 0
-; 0000 0089 
-; 0000 008A   // initilize lcd
-; 0000 008B   lcd_init(16);
+; 0000 008A 
+; 0000 008B   // initilize lcd
+; 0000 008C   lcd_init(16);
 ;PCODE: $000000BF VOL: 0
 ;PCODE: $000000C0 VOL: 0
-; 0000 008C   lcd_clear();
+; 0000 008D   lcd_clear();
 ;PCODE: $000000C1 VOL: 0
-; 0000 008D   lcd_gotoxy(0, 1);
+; 0000 008E   lcd_gotoxy(0, 1);
 ;PCODE: $000000C2 VOL: 0
 ;PCODE: $000000C3 VOL: 0
 ;PCODE: $000000C4 VOL: 0
 ;PCODE: $000000C5 VOL: 0
-; 0000 008E   delay_ms(300);
+; 0000 008F   delay_ms(300);
 ;PCODE: $000000C6 VOL: 0
 ;PCODE: $000000C7 VOL: 0
-; 0000 008F 
-; 0000 0090   ASSR = 0x08; // timer2
+; 0000 0090 
+; 0000 0091   ASSR = 0x08; // timer2
 ;PCODE: $000000C8 VOL: 0
 ;PCODE: $000000C9 VOL: 0
-; 0000 0091   TCCR2 = 0x05;
+; 0000 0092   TCCR2 = 0x05;
 ;PCODE: $000000CA VOL: 0
 ;PCODE: $000000CB VOL: 0
-; 0000 0092   TCNT2 = 0x00;
+; 0000 0093   TCNT2 = 0x00;
 ;PCODE: $000000CC VOL: 0
 ;PCODE: $000000CD VOL: 0
-; 0000 0093   OCR2 = 0x00;
+; 0000 0094   OCR2 = 0x00;
 ;PCODE: $000000CE VOL: 0
 ;PCODE: $000000CF VOL: 0
-; 0000 0094   TIMSK = 0x40;
+; 0000 0095   TIMSK = 0x40;
 ;PCODE: $000000D0 VOL: 0
 ;PCODE: $000000D1 VOL: 0
-; 0000 0095 
-; 0000 0096   PORTA = (1 << DDD0) | (1 << DDD1) | (1 << DDD2) | (1 << DDD3) | (1 << DDD4);
+; 0000 0096 
+; 0000 0097   PORTA = (1 << DDD0) | (1 << DDD1) | (1 << DDD2) | (1 << DDD3) | (1 << DDD4);
 ;PCODE: $000000D2 VOL: 0
 ;PCODE: $000000D3 VOL: 0
-; 0000 0097 
-; 0000 0098   day = i; // i in epprom
+; 0000 0098 
+; 0000 0099   day = i; // i in epprom
 ;PCODE: $000000D4 VOL: 0
 ;PCODE: $000000D5 VOL: 0
 ;PCODE: $000000D6 VOL: 0
-; 0000 0099 
-; 0000 009A #asm("sei")
+; 0000 009A 
+; 0000 009B #asm("sei")
 ;PCODE: $000000D7 VOL: 0
 	sei
 ;PCODE: $000000D8 VOL: 0
-; 0000 009B   capacity = capacity - reserved;
+; 0000 009C   capacity = capacity - reserved;
 ;PCODE: $000000D9 VOL: 0
 ;PCODE: $000000DA VOL: 0
-; 0000 009C 
-; 0000 009D   while (1)
+; 0000 009D 
+; 0000 009E   while (1)
 ;PCODE: $000000DB VOL: 0
-; 0000 009E   {
-; 0000 009F 
-; 0000 00A0     if (PINA .2 == 0)
+; 0000 009F   {
+; 0000 00A0 
+; 0000 00A1     if (PINA.2 == 0)
 ;PCODE: $000000DC VOL: 0
 ;PCODE: $000000DD VOL: 0
 ;PCODE: $000000DE VOL: 0
-; 0000 00A1     {
-; 0000 00A2       while (PINA .2 == 0)
+; 0000 00A2     {
+; 0000 00A3       while (PINA.2 == 0);
 ;PCODE: $000000DF VOL: 0
 ;PCODE: $000000E0 VOL: 0
 ;PCODE: $000000E1 VOL: 0
 ;PCODE: $000000E2 VOL: 0
-; 0000 00A3         ;
 ;PCODE: $000000E3 VOL: 0
 ;PCODE: $000000E4 VOL: 0
 ; 0000 00A4       ok();
@@ -658,54 +658,52 @@
 ;PCODE: $00000194 VOL: 0
 ; 0000 00EB     }
 ; 0000 00EC 
-; 0000 00ED     if (PINA .3 == 0)
+; 0000 00ED     if (PINA.3 == 0)
 ;PCODE: $00000195 VOL: 0
 ;PCODE: $00000196 VOL: 0
 ;PCODE: $00000197 VOL: 0
 ;PCODE: $00000198 VOL: 0
 ; 0000 00EE     { // NEXT
-; 0000 00EF       while (PINA .3 == 0)
+; 0000 00EF       while (PINA.3 == 0);
 ;PCODE: $00000199 VOL: 0
 ;PCODE: $0000019A VOL: 0
 ;PCODE: $0000019B VOL: 0
 ;PCODE: $0000019C VOL: 0
-; 0000 00F0         ;
 ;PCODE: $0000019D VOL: 0
 ;PCODE: $0000019E VOL: 0
-; 0000 00F1       _chose++;
+; 0000 00F0       _chose++;
 ;PCODE: $0000019F VOL: 0
 ;PCODE: $000001A0 VOL: 0
-; 0000 00F2       if (_chose >= 4)
+; 0000 00F1       if (_chose >= 4)
 ;PCODE: $000001A1 VOL: 0
 ;PCODE: $000001A2 VOL: 0
 ;PCODE: $000001A3 VOL: 0
-; 0000 00F3         _chose = 0;
+; 0000 00F2         _chose = 0;
 ;PCODE: $000001A4 VOL: 0
 ;PCODE: $000001A5 VOL: 0
-; 0000 00F4     }
+; 0000 00F3     }
 ;PCODE: $000001A6 VOL: 0
-; 0000 00F5 
-; 0000 00F6     if (PINA .4 == 0)
+; 0000 00F4 
+; 0000 00F5     if (PINA.4 == 0)
 ;PCODE: $000001A7 VOL: 0
 ;PCODE: $000001A8 VOL: 0
 ;PCODE: $000001A9 VOL: 0
 ;PCODE: $000001AA VOL: 0
-; 0000 00F7     { // Back
-; 0000 00F8       while (PINA .4 == 0)
+; 0000 00F6     { // Back
+; 0000 00F7       while (PINA.4 == 0);
 ;PCODE: $000001AB VOL: 0
 ;PCODE: $000001AC VOL: 0
 ;PCODE: $000001AD VOL: 0
 ;PCODE: $000001AE VOL: 0
-; 0000 00F9         ;
 ;PCODE: $000001AF VOL: 0
 ;PCODE: $000001B0 VOL: 0
-; 0000 00FA       return 0;
+; 0000 00F8       return 0;
 ;PCODE: $000001B1 VOL: 0
 ;PCODE: $000001B2 VOL: 0
 ;PCODE: $000001B3 VOL: 0
-; 0000 00FB     }
-; 0000 00FC 
-; 0000 00FD     if (PINA .2 == 0 & _chose == 0)
+; 0000 00F9     }
+; 0000 00FA 
+; 0000 00FB     if (PINA.2 == 0 & _chose == 0)
 ;PCODE: $000001B4 VOL: 0
 ;PCODE: $000001B5 VOL: 0
 ;PCODE: $000001B6 VOL: 0
@@ -717,20 +715,19 @@
 ;PCODE: $000001BC VOL: 0
 ;PCODE: $000001BD VOL: 0
 ;PCODE: $000001BE VOL: 0
-; 0000 00FE     { // chose time_setting
-; 0000 00FF       while (PINA .2 == 0)
+; 0000 00FC     { // chose time_setting
+; 0000 00FD       while (PINA.2 == 0);
 ;PCODE: $000001BF VOL: 0
 ;PCODE: $000001C0 VOL: 0
 ;PCODE: $000001C1 VOL: 0
 ;PCODE: $000001C2 VOL: 0
-; 0000 0100         ;
 ;PCODE: $000001C3 VOL: 0
 ;PCODE: $000001C4 VOL: 0
-; 0000 0101       time_set();
+; 0000 00FE       time_set();
 ;PCODE: $000001C5 VOL: 0
-; 0000 0102     }
-; 0000 0103 
-; 0000 0104     if (PINA .2 == 0 & _chose == 1)
+; 0000 00FF     }
+; 0000 0100 
+; 0000 0101     if (PINA.2 == 0 & _chose == 1)
 ;PCODE: $000001C6 VOL: 0
 ;PCODE: $000001C7 VOL: 0
 ;PCODE: $000001C8 VOL: 0
@@ -742,20 +739,19 @@
 ;PCODE: $000001CE VOL: 0
 ;PCODE: $000001CF VOL: 0
 ;PCODE: $000001D0 VOL: 0
-; 0000 0105     { // chose in_out_search
-; 0000 0106       while (PINA .2 == 0)
+; 0000 0102     { // chose in_out_search
+; 0000 0103       while (PINA.2 == 0);
 ;PCODE: $000001D1 VOL: 0
 ;PCODE: $000001D2 VOL: 0
 ;PCODE: $000001D3 VOL: 0
 ;PCODE: $000001D4 VOL: 0
-; 0000 0107         ;
 ;PCODE: $000001D5 VOL: 0
 ;PCODE: $000001D6 VOL: 0
-; 0000 0108       in_out_search();
+; 0000 0104       in_out_search();
 ;PCODE: $000001D7 VOL: 0
-; 0000 0109     }
-; 0000 010A 
-; 0000 010B     if (PINA .2 == 0 & _chose == 2)
+; 0000 0105     }
+; 0000 0106 
+; 0000 0107     if (PINA.2 == 0 & _chose == 2)
 ;PCODE: $000001D8 VOL: 0
 ;PCODE: $000001D9 VOL: 0
 ;PCODE: $000001DA VOL: 0
@@ -767,20 +763,19 @@
 ;PCODE: $000001E0 VOL: 0
 ;PCODE: $000001E1 VOL: 0
 ;PCODE: $000001E2 VOL: 0
-; 0000 010C     { // chose reserve
-; 0000 010D       while (PINA .2 == 0)
+; 0000 0108     { // chose reserve
+; 0000 0109       while (PINA.2 == 0);
 ;PCODE: $000001E3 VOL: 0
 ;PCODE: $000001E4 VOL: 0
 ;PCODE: $000001E5 VOL: 0
 ;PCODE: $000001E6 VOL: 0
-; 0000 010E         ;
 ;PCODE: $000001E7 VOL: 0
 ;PCODE: $000001E8 VOL: 0
-; 0000 010F       reserve_park();
+; 0000 010A       reserve_park();
 ;PCODE: $000001E9 VOL: 0
-; 0000 0110     }
-; 0000 0111 
-; 0000 0112     if (PINA .2 == 0 & _chose == 3)
+; 0000 010B     }
+; 0000 010C 
+; 0000 010D     if (PINA.2 == 0 & _chose == 3)
 ;PCODE: $000001EA VOL: 0
 ;PCODE: $000001EB VOL: 0
 ;PCODE: $000001EC VOL: 0
@@ -792,28 +787,27 @@
 ;PCODE: $000001F2 VOL: 0
 ;PCODE: $000001F3 VOL: 0
 ;PCODE: $000001F4 VOL: 0
-; 0000 0113     { // chose set data
-; 0000 0114       while (PINA .2 == 0)
+; 0000 010E     { // chose set data
+; 0000 010F       while (PINA.2 == 0);
 ;PCODE: $000001F5 VOL: 0
 ;PCODE: $000001F6 VOL: 0
 ;PCODE: $000001F7 VOL: 0
 ;PCODE: $000001F8 VOL: 0
-; 0000 0115         ;
 ;PCODE: $000001F9 VOL: 0
 ;PCODE: $000001FA VOL: 0
-; 0000 0116       set_data();
+; 0000 0110       set_data();
 ;PCODE: $000001FB VOL: 0
-; 0000 0117     }
-; 0000 0118 
-; 0000 0119     delay_ms(25);
+; 0000 0111     }
+; 0000 0112 
+; 0000 0113     delay_ms(25);
 ;PCODE: $000001FC VOL: 0
 ;PCODE: $000001FD VOL: 0
 ;PCODE: $000001FE VOL: 0
 ;PCODE: $000001FF VOL: 0
-; 0000 011A   }
+; 0000 0114   }
 ;PCODE: $00000200 VOL: 0
 ;PCODE: $00000201 VOL: 0
-; 0000 011B }
+; 0000 0115 }
 ;PCODE: $00000202 VOL: 0
 ;PCODE: $00000203 VOL: 0
 ;PCODE: $00000204 VOL: 0
@@ -821,25 +815,24 @@
 ;/// Time setting
 ;
 ;char time_set(void)
-; 0000 0120 {
+; 0000 011A {
 ;PCODE: $00000205 VOL: 0
 ;PCODE: $00000206 VOL: 0
-; 0000 0121   bit _chose = 0;
-; 0000 0122   char buff[17];
-; 0000 0123   while (1)
+; 0000 011B   bit _chose = 0;
+; 0000 011C   char buff[17];
+; 0000 011D   while (1)
 ;PCODE: $00000207 VOL: 0
 ;	_chose -> R15.0
 ;	buff -> Y+0
 ;PCODE: $00000208 VOL: 0
 ;PCODE: $00000209 VOL: 0
-; 0000 0124   {
-; 0000 0125 
-; 0000 0126     if (_chose == 0)
+; 0000 011E   {
+; 0000 011F     if (_chose == 0)
 ;PCODE: $0000020A VOL: 0
 ;PCODE: $0000020B VOL: 0
 ;PCODE: $0000020C VOL: 0
-; 0000 0127     {
-; 0000 0128       sprintf(buff, "Set min=%d  >", minute);
+; 0000 0120     {
+; 0000 0121       sprintf(buff, "Set min=%d  >", minute);
 ;PCODE: $0000020D VOL: 0
 ;PCODE: $0000020E VOL: 0
 ;PCODE: $0000020F VOL: 0
@@ -852,20 +845,20 @@
 ;PCODE: $00000216 VOL: 0
 ;PCODE: $00000217 VOL: 0
 ;PCODE: $00000218 VOL: 0
-; 0000 0129       lcd_clear();
+; 0000 0122       lcd_clear();
 ;PCODE: $00000219 VOL: 0
-; 0000 012A       lcd_puts(buff);
+; 0000 0123       lcd_puts(buff);
 ;PCODE: $0000021A VOL: 0
 ;PCODE: $0000021B VOL: 0
-; 0000 012B     }
-; 0000 012C 
-; 0000 012D     if (_chose == 1)
+; 0000 0124     }
+; 0000 0125 
+; 0000 0126     if (_chose == 1)
 ;PCODE: $0000021C VOL: 0
 ;PCODE: $0000021D VOL: 0
 ;PCODE: $0000021E VOL: 0
 ;PCODE: $0000021F VOL: 0
-; 0000 012E     {
-; 0000 012F       sprintf(buff, "Set hour=%d  >", hour);
+; 0000 0127     {
+; 0000 0128       sprintf(buff, "Set hour=%d  >", hour);
 ;PCODE: $00000220 VOL: 0
 ;PCODE: $00000221 VOL: 0
 ;PCODE: $00000222 VOL: 0
@@ -878,14 +871,14 @@
 ;PCODE: $00000229 VOL: 0
 ;PCODE: $0000022A VOL: 0
 ;PCODE: $0000022B VOL: 0
-; 0000 0130       lcd_clear();
+; 0000 0129       lcd_clear();
 ;PCODE: $0000022C VOL: 0
-; 0000 0131       lcd_puts(buff);
+; 0000 012A       lcd_puts(buff);
 ;PCODE: $0000022D VOL: 0
 ;PCODE: $0000022E VOL: 0
-; 0000 0132     }
-; 0000 0133 
-; 0000 0134     if (PINA .1 == 0 & _chose == 0)
+; 0000 012B     }
+; 0000 012C 
+; 0000 012D     if (PINA.1 == 0 & _chose == 0)
 ;PCODE: $0000022F VOL: 0
 ;PCODE: $00000230 VOL: 0
 ;PCODE: $00000231 VOL: 0
@@ -898,27 +891,26 @@
 ;PCODE: $00000238 VOL: 0
 ;PCODE: $00000239 VOL: 0
 ;PCODE: $0000023A VOL: 0
-; 0000 0135     { // UP     min
-; 0000 0136       while (PINA .1 == 0)
+; 0000 012E     { // UP     min
+; 0000 012F       while (PINA.1 == 0);
 ;PCODE: $0000023B VOL: 0
 ;PCODE: $0000023C VOL: 0
 ;PCODE: $0000023D VOL: 0
 ;PCODE: $0000023E VOL: 0
-; 0000 0137         ;
 ;PCODE: $0000023F VOL: 0
 ;PCODE: $00000240 VOL: 0
-; 0000 0138       minute++;
+; 0000 0130       minute++;
 ;PCODE: $00000241 VOL: 0
-; 0000 0139       if (minute > 59)
+; 0000 0131       if (minute > 59)
 ;PCODE: $00000242 VOL: 0
 ;PCODE: $00000243 VOL: 0
 ;PCODE: $00000244 VOL: 0
-; 0000 013A         minute = 0;
+; 0000 0132         minute = 0;
 ;PCODE: $00000245 VOL: 0
-; 0000 013B     }
+; 0000 0133     }
 ;PCODE: $00000246 VOL: 0
-; 0000 013C 
-; 0000 013D     if (PINA .0 == 0 & _chose == 0)
+; 0000 0134 
+; 0000 0135     if (PINA.0 == 0 & _chose == 0)
 ;PCODE: $00000247 VOL: 0
 ;PCODE: $00000248 VOL: 0
 ;PCODE: $00000249 VOL: 0
@@ -931,28 +923,27 @@
 ;PCODE: $00000250 VOL: 0
 ;PCODE: $00000251 VOL: 0
 ;PCODE: $00000252 VOL: 0
-; 0000 013E     { // DOWN    min
-; 0000 013F       while (PINA .0 == 0)
+; 0000 0136     { // DOWN    min
+; 0000 0137       while (PINA.0 == 0);
 ;PCODE: $00000253 VOL: 0
 ;PCODE: $00000254 VOL: 0
 ;PCODE: $00000255 VOL: 0
 ;PCODE: $00000256 VOL: 0
-; 0000 0140         ;
 ;PCODE: $00000257 VOL: 0
 ;PCODE: $00000258 VOL: 0
-; 0000 0141       minute--;
+; 0000 0138       minute--;
 ;PCODE: $00000259 VOL: 0
-; 0000 0142       if (minute < 0)
+; 0000 0139       if (minute < 0)
 ;PCODE: $0000025A VOL: 0
 ;PCODE: $0000025B VOL: 0
 ;PCODE: $0000025C VOL: 0
-; 0000 0143         minute = 59;
+; 0000 013A         minute = 59;
 ;PCODE: $0000025D VOL: 0
 ;PCODE: $0000025E VOL: 0
-; 0000 0144     }
+; 0000 013B     }
 ;PCODE: $0000025F VOL: 0
-; 0000 0145 
-; 0000 0146     if (PINA .1 == 0 & _chose == 1)
+; 0000 013C 
+; 0000 013D     if (PINA.1 == 0 & _chose == 1)
 ;PCODE: $00000260 VOL: 0
 ;PCODE: $00000261 VOL: 0
 ;PCODE: $00000262 VOL: 0
@@ -965,27 +956,26 @@
 ;PCODE: $00000269 VOL: 0
 ;PCODE: $0000026A VOL: 0
 ;PCODE: $0000026B VOL: 0
-; 0000 0147     { // UP    hour
-; 0000 0148       while (PINA .1 == 0)
+; 0000 013E     { // UP    hour
+; 0000 013F       while (PINA.1 == 0);
 ;PCODE: $0000026C VOL: 0
 ;PCODE: $0000026D VOL: 0
 ;PCODE: $0000026E VOL: 0
 ;PCODE: $0000026F VOL: 0
-; 0000 0149         ;
 ;PCODE: $00000270 VOL: 0
 ;PCODE: $00000271 VOL: 0
-; 0000 014A       hour++;
+; 0000 0140       hour++;
 ;PCODE: $00000272 VOL: 0
-; 0000 014B       if (hour > 23)
+; 0000 0141       if (hour > 23)
 ;PCODE: $00000273 VOL: 0
 ;PCODE: $00000274 VOL: 0
 ;PCODE: $00000275 VOL: 0
-; 0000 014C         hour = 0;
+; 0000 0142         hour = 0;
 ;PCODE: $00000276 VOL: 0
-; 0000 014D     }
+; 0000 0143     }
 ;PCODE: $00000277 VOL: 0
-; 0000 014E 
-; 0000 014F     if (PINA .0 == 0 & _chose == 1)
+; 0000 0144 
+; 0000 0145     if (PINA.0 == 0 & _chose == 1)
 ;PCODE: $00000278 VOL: 0
 ;PCODE: $00000279 VOL: 0
 ;PCODE: $0000027A VOL: 0
@@ -998,89 +988,86 @@
 ;PCODE: $00000281 VOL: 0
 ;PCODE: $00000282 VOL: 0
 ;PCODE: $00000283 VOL: 0
-; 0000 0150     { // DOWN    hour
-; 0000 0151       while (PINA .0 == 0)
+; 0000 0146     { // DOWN    hour
+; 0000 0147       while (PINA.0 == 0);
 ;PCODE: $00000284 VOL: 0
 ;PCODE: $00000285 VOL: 0
 ;PCODE: $00000286 VOL: 0
 ;PCODE: $00000287 VOL: 0
-; 0000 0152         ;
 ;PCODE: $00000288 VOL: 0
 ;PCODE: $00000289 VOL: 0
-; 0000 0153       hour--;
+; 0000 0148       hour--;
 ;PCODE: $0000028A VOL: 0
-; 0000 0154       if (hour < 0)
+; 0000 0149       if (hour < 0)
 ;PCODE: $0000028B VOL: 0
 ;PCODE: $0000028C VOL: 0
 ;PCODE: $0000028D VOL: 0
-; 0000 0155         hour = 23;
+; 0000 014A         hour = 23;
 ;PCODE: $0000028E VOL: 0
 ;PCODE: $0000028F VOL: 0
-; 0000 0156     }
+; 0000 014B     }
 ;PCODE: $00000290 VOL: 0
-; 0000 0157 
-; 0000 0158     if (PINA .3 == 0)
+; 0000 014C 
+; 0000 014D     if (PINA.3 == 0)
 ;PCODE: $00000291 VOL: 0
 ;PCODE: $00000292 VOL: 0
 ;PCODE: $00000293 VOL: 0
 ;PCODE: $00000294 VOL: 0
-; 0000 0159     { // NEXT
-; 0000 015A       while (PINA .3 == 0)
+; 0000 014E     { // NEXT
+; 0000 014F       while (PINA.3 == 0);
 ;PCODE: $00000295 VOL: 0
 ;PCODE: $00000296 VOL: 0
 ;PCODE: $00000297 VOL: 0
 ;PCODE: $00000298 VOL: 0
-; 0000 015B         ;
 ;PCODE: $00000299 VOL: 0
 ;PCODE: $0000029A VOL: 0
-; 0000 015C       _chose = !_chose;
+; 0000 0150       _chose = !_chose;
 ;PCODE: $0000029B VOL: 0
 ;PCODE: $0000029C VOL: 0
 ;PCODE: $0000029D VOL: 0
-; 0000 015D     }
-; 0000 015E 
-; 0000 015F     if (PINA .4 == 0)
+; 0000 0151     }
+; 0000 0152 
+; 0000 0153     if (PINA.4 == 0)
 ;PCODE: $0000029E VOL: 0
 ;PCODE: $0000029F VOL: 0
 ;PCODE: $000002A0 VOL: 0
 ;PCODE: $000002A1 VOL: 0
-; 0000 0160     { // Back
-; 0000 0161       while (PINA .4 == 0)
+; 0000 0154     { // Back
+; 0000 0155       while (PINA.4 == 0);
 ;PCODE: $000002A2 VOL: 0
 ;PCODE: $000002A3 VOL: 0
 ;PCODE: $000002A4 VOL: 0
 ;PCODE: $000002A5 VOL: 0
-; 0000 0162         ;
 ;PCODE: $000002A6 VOL: 0
 ;PCODE: $000002A7 VOL: 0
-; 0000 0163       return 0;
+; 0000 0156       return 0;
 ;PCODE: $000002A8 VOL: 0
 ;PCODE: $000002A9 VOL: 0
 ;PCODE: $000002AA VOL: 0
-; 0000 0164     }
-; 0000 0165 
-; 0000 0166     delay_ms(25);
+; 0000 0157     }
+; 0000 0158 
+; 0000 0159     delay_ms(25);
 ;PCODE: $000002AB VOL: 0
 ;PCODE: $000002AC VOL: 0
 ;PCODE: $000002AD VOL: 0
 ;PCODE: $000002AE VOL: 0
-; 0000 0167   }
+; 0000 015A   }
 ;PCODE: $000002AF VOL: 0
 ;PCODE: $000002B0 VOL: 0
-; 0000 0168 }
+; 0000 015B }
 ;PCODE: $000002B1 VOL: 0
 ;PCODE: $000002B2 VOL: 0
 ;PCODE: $000002B3 VOL: 0
 ;
 ;/// IN&OUT Search
 ;char in_out_search(void)
-; 0000 016C {
+; 0000 015F {
 ;PCODE: $000002B4 VOL: 0
 ;PCODE: $000002B5 VOL: 0
-; 0000 016D   char t_month = month, buff[17], buff2[17];
-; 0000 016E   char i_temp = i;
-; 0000 016F   bit bit_m = 0;
-; 0000 0170   while (1)
+; 0000 0160   char t_month = month, buff[17], buff2[17];
+; 0000 0161   char i_temp = i;
+; 0000 0162   bit bit_m = 0;
+; 0000 0163   while (1)
 ;PCODE: $000002B6 VOL: 0
 ;PCODE: $000002B7 VOL: 0
 ;PCODE: $000002B8 VOL: 0
@@ -1096,26 +1083,25 @@
 ;PCODE: $000002BD VOL: 0
 ;PCODE: $000002BE VOL: 0
 ;PCODE: $000002BF VOL: 0
-; 0000 0171   {
-; 0000 0172 
-; 0000 0173     if (PINA .1 == 0)
+; 0000 0164   {
+; 0000 0165 
+; 0000 0166     if (PINA.1 == 0)
 ;PCODE: $000002C0 VOL: 0
 ;PCODE: $000002C1 VOL: 0
 ;PCODE: $000002C2 VOL: 0
-; 0000 0174     { // UP
-; 0000 0175       while (PINA .1 == 0)
+; 0000 0167     { // UP
+; 0000 0168       while (PINA.1 == 0);
 ;PCODE: $000002C3 VOL: 0
 ;PCODE: $000002C4 VOL: 0
 ;PCODE: $000002C5 VOL: 0
 ;PCODE: $000002C6 VOL: 0
-; 0000 0176         ;
 ;PCODE: $000002C7 VOL: 0
 ;PCODE: $000002C8 VOL: 0
-; 0000 0177       i_temp++;
+; 0000 0169       i_temp++;
 ;PCODE: $000002C9 VOL: 0
 ;PCODE: $000002CA VOL: 0
-; 0000 0178 
-; 0000 0179       if (i_temp > i & bit_m == 0)
+; 0000 016A 
+; 0000 016B       if (i_temp > i & bit_m == 0)
 ;PCODE: $000002CB VOL: 0
 ;PCODE: $000002CC VOL: 0
 ;PCODE: $000002CD VOL: 0
@@ -1127,21 +1113,21 @@
 ;PCODE: $000002D3 VOL: 0
 ;PCODE: $000002D4 VOL: 0
 ;PCODE: $000002D5 VOL: 0
-; 0000 017A       {
-; 0000 017B         i_temp = i;
+; 0000 016C       {
+; 0000 016D         i_temp = i;
 ;PCODE: $000002D6 VOL: 0
 ;PCODE: $000002D7 VOL: 0
 ;PCODE: $000002D8 VOL: 0
-; 0000 017C         t_month--;
+; 0000 016E         t_month--;
 ;PCODE: $000002D9 VOL: 0
 ;PCODE: $000002DA VOL: 0
-; 0000 017D         bit_m = 1;
+; 0000 016F         bit_m = 1;
 ;PCODE: $000002DB VOL: 0
 ;PCODE: $000002DC VOL: 0
 ;PCODE: $000002DD VOL: 0
-; 0000 017E       }
-; 0000 017F 
-; 0000 0180       if (t_month <= 6 & i_temp > 31 & bit_m == 1)
+; 0000 0170       }
+; 0000 0171 
+; 0000 0172       if (t_month <= 6 & i_temp > 31 & bit_m == 1)
 ;PCODE: $000002DE VOL: 0
 ;PCODE: $000002DF VOL: 0
 ;PCODE: $000002E0 VOL: 0
@@ -1158,20 +1144,20 @@
 ;PCODE: $000002EB VOL: 0
 ;PCODE: $000002EC VOL: 0
 ;PCODE: $000002ED VOL: 0
-; 0000 0181       {
-; 0000 0182         i_temp = 1;
+; 0000 0173       {
+; 0000 0174         i_temp = 1;
 ;PCODE: $000002EE VOL: 0
 ;PCODE: $000002EF VOL: 0
-; 0000 0183         t_month++;
+; 0000 0175         t_month++;
 ;PCODE: $000002F0 VOL: 0
 ;PCODE: $000002F1 VOL: 0
-; 0000 0184         bit_m = 0;
+; 0000 0176         bit_m = 0;
 ;PCODE: $000002F2 VOL: 0
 ;PCODE: $000002F3 VOL: 0
 ;PCODE: $000002F4 VOL: 0
-; 0000 0185       }
-; 0000 0186 
-; 0000 0187       if (t_month > 6 & i_temp > 30 & bit_m == 1)
+; 0000 0177       }
+; 0000 0178 
+; 0000 0179       if (t_month > 6 & i_temp > 30 & bit_m == 1)
 ;PCODE: $000002F5 VOL: 0
 ;PCODE: $000002F6 VOL: 0
 ;PCODE: $000002F7 VOL: 0
@@ -1188,20 +1174,20 @@
 ;PCODE: $00000302 VOL: 0
 ;PCODE: $00000303 VOL: 0
 ;PCODE: $00000304 VOL: 0
-; 0000 0188       {
-; 0000 0189         i_temp = 1;
+; 0000 017A       {
+; 0000 017B         i_temp = 1;
 ;PCODE: $00000305 VOL: 0
 ;PCODE: $00000306 VOL: 0
-; 0000 018A         t_month++;
+; 0000 017C         t_month++;
 ;PCODE: $00000307 VOL: 0
 ;PCODE: $00000308 VOL: 0
-; 0000 018B         bit_m = 0;
+; 0000 017D         bit_m = 0;
 ;PCODE: $00000309 VOL: 0
 ;PCODE: $0000030A VOL: 0
 ;PCODE: $0000030B VOL: 0
-; 0000 018C       }
-; 0000 018D 
-; 0000 018E       if (t_month == 12 & i_temp > 29 & bit_m == 1)
+; 0000 017E       }
+; 0000 017F 
+; 0000 0180       if (t_month == 12 & i_temp > 29 & bit_m == 1)
 ;PCODE: $0000030C VOL: 0
 ;PCODE: $0000030D VOL: 0
 ;PCODE: $0000030E VOL: 0
@@ -1218,57 +1204,56 @@
 ;PCODE: $00000319 VOL: 0
 ;PCODE: $0000031A VOL: 0
 ;PCODE: $0000031B VOL: 0
-; 0000 018F       {
-; 0000 0190         i_temp = 1;
+; 0000 0181       {
+; 0000 0182         i_temp = 1;
 ;PCODE: $0000031C VOL: 0
 ;PCODE: $0000031D VOL: 0
-; 0000 0191         t_month++;
+; 0000 0183         t_month++;
 ;PCODE: $0000031E VOL: 0
 ;PCODE: $0000031F VOL: 0
-; 0000 0192         bit_m = 0;
+; 0000 0184         bit_m = 0;
 ;PCODE: $00000320 VOL: 0
 ;PCODE: $00000321 VOL: 0
 ;PCODE: $00000322 VOL: 0
-; 0000 0193       }
-; 0000 0194 
-; 0000 0195       if (t_month == 0)
+; 0000 0185       }
+; 0000 0186 
+; 0000 0187       if (t_month == 0)
 ;PCODE: $00000323 VOL: 0
 ;PCODE: $00000324 VOL: 0
 ;PCODE: $00000325 VOL: 0
-; 0000 0196         t_month = 12;
+; 0000 0188         t_month = 12;
 ;PCODE: $00000326 VOL: 0
 ;PCODE: $00000327 VOL: 0
-; 0000 0197 
-; 0000 0198       if (t_month > 12)
+; 0000 0189 
+; 0000 018A       if (t_month > 12)
 ;PCODE: $00000328 VOL: 0
 ;PCODE: $00000329 VOL: 0
 ;PCODE: $0000032A VOL: 0
 ;PCODE: $0000032B VOL: 0
-; 0000 0199         t_month = 1;
+; 0000 018B         t_month = 1;
 ;PCODE: $0000032C VOL: 0
 ;PCODE: $0000032D VOL: 0
-; 0000 019A     }
+; 0000 018C     }
 ;PCODE: $0000032E VOL: 0
-; 0000 019B 
-; 0000 019C     if (PINA .0 == 0)
+; 0000 018D 
+; 0000 018E     if (PINA.0 == 0)
 ;PCODE: $0000032F VOL: 0
 ;PCODE: $00000330 VOL: 0
 ;PCODE: $00000331 VOL: 0
 ;PCODE: $00000332 VOL: 0
-; 0000 019D     { // DOWN
-; 0000 019E       while (PINA .0 == 0)
+; 0000 018F     { // DOWN
+; 0000 0190       while (PINA.0 == 0);
 ;PCODE: $00000333 VOL: 0
 ;PCODE: $00000334 VOL: 0
 ;PCODE: $00000335 VOL: 0
 ;PCODE: $00000336 VOL: 0
-; 0000 019F         ;
 ;PCODE: $00000337 VOL: 0
 ;PCODE: $00000338 VOL: 0
-; 0000 01A0       i_temp--;
+; 0000 0191       i_temp--;
 ;PCODE: $00000339 VOL: 0
 ;PCODE: $0000033A VOL: 0
-; 0000 01A1 
-; 0000 01A2       if (i_temp == 0 & bit_m == 0)
+; 0000 0192 
+; 0000 0193       if (i_temp == 0 & bit_m == 0)
 ;PCODE: $0000033B VOL: 0
 ;PCODE: $0000033C VOL: 0
 ;PCODE: $0000033D VOL: 0
@@ -1279,63 +1264,63 @@
 ;PCODE: $00000342 VOL: 0
 ;PCODE: $00000343 VOL: 0
 ;PCODE: $00000344 VOL: 0
-; 0000 01A3       {
-; 0000 01A4 
-; 0000 01A5         t_month--;
+; 0000 0194       {
+; 0000 0195 
+; 0000 0196         t_month--;
 ;PCODE: $00000345 VOL: 0
 ;PCODE: $00000346 VOL: 0
-; 0000 01A6 
-; 0000 01A7         if (t_month == 0)
+; 0000 0197 
+; 0000 0198         if (t_month == 0)
 ;PCODE: $00000347 VOL: 0
 ;PCODE: $00000348 VOL: 0
-; 0000 01A8           t_month = 12;
+; 0000 0199           t_month = 12;
 ;PCODE: $00000349 VOL: 0
 ;PCODE: $0000034A VOL: 0
-; 0000 01A9 
-; 0000 01AA         if (t_month > 12)
+; 0000 019A 
+; 0000 019B         if (t_month > 12)
 ;PCODE: $0000034B VOL: 0
 ;PCODE: $0000034C VOL: 0
 ;PCODE: $0000034D VOL: 0
 ;PCODE: $0000034E VOL: 0
-; 0000 01AB           t_month = 1;
+; 0000 019C           t_month = 1;
 ;PCODE: $0000034F VOL: 0
 ;PCODE: $00000350 VOL: 0
-; 0000 01AC 
-; 0000 01AD         if (t_month <= 6)
+; 0000 019D 
+; 0000 019E         if (t_month <= 6)
 ;PCODE: $00000351 VOL: 0
 ;PCODE: $00000352 VOL: 0
 ;PCODE: $00000353 VOL: 0
 ;PCODE: $00000354 VOL: 0
-; 0000 01AE           i_temp = 31;
+; 0000 019F           i_temp = 31;
 ;PCODE: $00000355 VOL: 0
 ;PCODE: $00000356 VOL: 0
-; 0000 01AF 
-; 0000 01B0         if (t_month > 6)
+; 0000 01A0 
+; 0000 01A1         if (t_month > 6)
 ;PCODE: $00000357 VOL: 0
 ;PCODE: $00000358 VOL: 0
 ;PCODE: $00000359 VOL: 0
 ;PCODE: $0000035A VOL: 0
-; 0000 01B1           i_temp = 30;
+; 0000 01A2           i_temp = 30;
 ;PCODE: $0000035B VOL: 0
 ;PCODE: $0000035C VOL: 0
-; 0000 01B2 
-; 0000 01B3         if (t_month == 12)
+; 0000 01A3 
+; 0000 01A4         if (t_month == 12)
 ;PCODE: $0000035D VOL: 0
 ;PCODE: $0000035E VOL: 0
 ;PCODE: $0000035F VOL: 0
 ;PCODE: $00000360 VOL: 0
-; 0000 01B4           i_temp = 29;
+; 0000 01A5           i_temp = 29;
 ;PCODE: $00000361 VOL: 0
 ;PCODE: $00000362 VOL: 0
-; 0000 01B5 
-; 0000 01B6         bit_m = 1;
+; 0000 01A6 
+; 0000 01A7         bit_m = 1;
 ;PCODE: $00000363 VOL: 0
 ;PCODE: $00000364 VOL: 0
 ;PCODE: $00000365 VOL: 0
 ;PCODE: $00000366 VOL: 0
-; 0000 01B7       }
-; 0000 01B8 
-; 0000 01B9       if (i_temp < i & bit_m == 1)
+; 0000 01A8       }
+; 0000 01A9 
+; 0000 01AA       if (i_temp < i & bit_m == 1)
 ;PCODE: $00000367 VOL: 0
 ;PCODE: $00000368 VOL: 0
 ;PCODE: $00000369 VOL: 0
@@ -1348,40 +1333,40 @@
 ;PCODE: $00000370 VOL: 0
 ;PCODE: $00000371 VOL: 0
 ;PCODE: $00000372 VOL: 0
-; 0000 01BA       {
-; 0000 01BB         i_temp = i;
+; 0000 01AB       {
+; 0000 01AC         i_temp = i;
 ;PCODE: $00000373 VOL: 0
 ;PCODE: $00000374 VOL: 0
 ;PCODE: $00000375 VOL: 0
-; 0000 01BC         t_month++;
+; 0000 01AD         t_month++;
 ;PCODE: $00000376 VOL: 0
 ;PCODE: $00000377 VOL: 0
-; 0000 01BD         bit_m = 0;
+; 0000 01AE         bit_m = 0;
 ;PCODE: $00000378 VOL: 0
 ;PCODE: $00000379 VOL: 0
 ;PCODE: $0000037A VOL: 0
-; 0000 01BE       }
-; 0000 01BF 
-; 0000 01C0       if (t_month == 0)
+; 0000 01AF       }
+; 0000 01B0 
+; 0000 01B1       if (t_month == 0)
 ;PCODE: $0000037B VOL: 0
 ;PCODE: $0000037C VOL: 0
 ;PCODE: $0000037D VOL: 0
-; 0000 01C1         t_month = 12;
+; 0000 01B2         t_month = 12;
 ;PCODE: $0000037E VOL: 0
 ;PCODE: $0000037F VOL: 0
-; 0000 01C2 
-; 0000 01C3       if (t_month > 12)
+; 0000 01B3 
+; 0000 01B4       if (t_month > 12)
 ;PCODE: $00000380 VOL: 0
 ;PCODE: $00000381 VOL: 0
 ;PCODE: $00000382 VOL: 0
 ;PCODE: $00000383 VOL: 0
-; 0000 01C4         t_month = 1;
+; 0000 01B5         t_month = 1;
 ;PCODE: $00000384 VOL: 0
 ;PCODE: $00000385 VOL: 0
-; 0000 01C5     }
+; 0000 01B6     }
 ;PCODE: $00000386 VOL: 0
-; 0000 01C6 
-; 0000 01C7     sprintf(buff, "%d/%d/%d ", year, t_month, i_temp);
+; 0000 01B7 
+; 0000 01B8     sprintf(buff, "%d/%d/%d ", year, t_month, i_temp);
 ;PCODE: $00000387 VOL: 0
 ;PCODE: $00000388 VOL: 0
 ;PCODE: $00000389 VOL: 0
@@ -1401,7 +1386,7 @@
 ;PCODE: $00000397 VOL: 0
 ;PCODE: $00000398 VOL: 0
 ;PCODE: $00000399 VOL: 0
-; 0000 01C8     sprintf(buff2, "in=%d out=%d", vurud_stat[i_temp], khuruj_stat[i_temp]);
+; 0000 01B9     sprintf(buff2, "in=%d out=%d", vurud_stat[i_temp], khuruj_stat[i_temp]);
 ;PCODE: $0000039A VOL: 0
 ;PCODE: $0000039B VOL: 0
 ;PCODE: $0000039C VOL: 0
@@ -1427,35 +1412,34 @@
 ;PCODE: $000003B0 VOL: 0
 ;PCODE: $000003B1 VOL: 0
 ;PCODE: $000003B2 VOL: 0
-; 0000 01C9 
-; 0000 01CA     lcd_clear();
+; 0000 01BA 
+; 0000 01BB     lcd_clear();
 ;PCODE: $000003B3 VOL: 0
-; 0000 01CB     lcd_puts(buff);
+; 0000 01BC     lcd_puts(buff);
 ;PCODE: $000003B4 VOL: 0
 ;PCODE: $000003B5 VOL: 0
-; 0000 01CC     lcd_gotoxy(0, 1);
+; 0000 01BD     lcd_gotoxy(0, 1);
 ;PCODE: $000003B6 VOL: 0
 ;PCODE: $000003B7 VOL: 0
 ;PCODE: $000003B8 VOL: 0
 ;PCODE: $000003B9 VOL: 0
-; 0000 01CD     lcd_puts(buff2);
+; 0000 01BE     lcd_puts(buff2);
 ;PCODE: $000003BA VOL: 0
 ;PCODE: $000003BB VOL: 0
-; 0000 01CE 
-; 0000 01CF     if (PINA .4 == 0)
+; 0000 01BF 
+; 0000 01C0     if (PINA.4 == 0)
 ;PCODE: $000003BC VOL: 0
 ;PCODE: $000003BD VOL: 0
 ;PCODE: $000003BE VOL: 0
-; 0000 01D0     { // Back
-; 0000 01D1       while (PINA .4 == 0)
+; 0000 01C1     { // Back
+; 0000 01C2       while (PINA.4 == 0);
 ;PCODE: $000003BF VOL: 0
 ;PCODE: $000003C0 VOL: 0
 ;PCODE: $000003C1 VOL: 0
 ;PCODE: $000003C2 VOL: 0
-; 0000 01D2         ;
 ;PCODE: $000003C3 VOL: 0
 ;PCODE: $000003C4 VOL: 0
-; 0000 01D3       return 0;
+; 0000 01C3       return 0;
 ;PCODE: $000003C5 VOL: 0
 ;PCODE: $000003C6 VOL: 0
 ;PCODE: $000003C7 VOL: 0
@@ -1463,16 +1447,16 @@
 ;PCODE: $000003C9 VOL: 0
 ;PCODE: $000003CA VOL: 0
 ;PCODE: $000003CB VOL: 0
-; 0000 01D4     }
-; 0000 01D5     delay_ms(25);
+; 0000 01C4     }
+; 0000 01C5     delay_ms(25);
 ;PCODE: $000003CC VOL: 0
 ;PCODE: $000003CD VOL: 0
 ;PCODE: $000003CE VOL: 0
 ;PCODE: $000003CF VOL: 0
-; 0000 01D6   }
+; 0000 01C6   }
 ;PCODE: $000003D0 VOL: 0
 ;PCODE: $000003D1 VOL: 0
-; 0000 01D7 }
+; 0000 01C7 }
 ;PCODE: $000003D2 VOL: 0
 ;PCODE: $000003D3 VOL: 0
 ;PCODE: $000003D4 VOL: 0
@@ -1484,17 +1468,17 @@
 ;// reserve_park
 ;
 ;char reserve_park(void)
-; 0000 01DC {
+; 0000 01CC {
 ;PCODE: $000003D9 VOL: 0
 ;PCODE: $000003DA VOL: 0
-; 0000 01DD   char buff[17];
-; 0000 01DE 
-; 0000 01DF   while (1)
+; 0000 01CD   char buff[17];
+; 0000 01CE 
+; 0000 01CF   while (1)
 ;PCODE: $000003DB VOL: 0
 ;	buff -> Y+0
 ;PCODE: $000003DC VOL: 0
-; 0000 01E0   {
-; 0000 01E1     sprintf(buff, "Reserved=%d", reserved);
+; 0000 01D0   {
+; 0000 01D1     sprintf(buff, "Reserved=%d", reserved);
 ;PCODE: $000003DD VOL: 0
 ;PCODE: $000003DE VOL: 0
 ;PCODE: $000003DF VOL: 0
@@ -1507,96 +1491,93 @@
 ;PCODE: $000003E6 VOL: 0
 ;PCODE: $000003E7 VOL: 0
 ;PCODE: $000003E8 VOL: 0
-; 0000 01E2     lcd_clear();
+; 0000 01D2     lcd_clear();
 ;PCODE: $000003E9 VOL: 0
-; 0000 01E3     lcd_puts(buff);
+; 0000 01D3     lcd_puts(buff);
 ;PCODE: $000003EA VOL: 0
 ;PCODE: $000003EB VOL: 0
-; 0000 01E4 
-; 0000 01E5     if (PINA .1 == 0)
+; 0000 01D4 
+; 0000 01D5     if (PINA.1 == 0)
 ;PCODE: $000003EC VOL: 0
 ;PCODE: $000003ED VOL: 0
 ;PCODE: $000003EE VOL: 0
-; 0000 01E6     { // UP
-; 0000 01E7       while (PINA .1 == 0)
+; 0000 01D6     { // UP
+; 0000 01D7       while (PINA.1 == 0);
 ;PCODE: $000003EF VOL: 0
 ;PCODE: $000003F0 VOL: 0
 ;PCODE: $000003F1 VOL: 0
 ;PCODE: $000003F2 VOL: 0
-; 0000 01E8         ;
 ;PCODE: $000003F3 VOL: 0
 ;PCODE: $000003F4 VOL: 0
-; 0000 01E9       reserved++;
+; 0000 01D8       reserved++;
 ;PCODE: $000003F5 VOL: 0
-; 0000 01EA     }
-; 0000 01EB 
-; 0000 01EC     if (reserved >= 100)
+; 0000 01D9     }
+; 0000 01DA 
+; 0000 01DB     if (reserved >= 100)
 ;PCODE: $000003F6 VOL: 0
 ;PCODE: $000003F7 VOL: 0
 ;PCODE: $000003F8 VOL: 0
 ;PCODE: $000003F9 VOL: 0
-; 0000 01ED     {
-; 0000 01EE       reserved = 99;
+; 0000 01DC     {
+; 0000 01DD       reserved = 99;
 ;PCODE: $000003FA VOL: 0
 ;PCODE: $000003FB VOL: 0
-; 0000 01EF     }
-; 0000 01F0 
-; 0000 01F1     if (PINA .0 == 0)
+; 0000 01DE     }
+; 0000 01DF 
+; 0000 01E0     if (PINA.0 == 0)
 ;PCODE: $000003FC VOL: 0
 ;PCODE: $000003FD VOL: 0
 ;PCODE: $000003FE VOL: 0
 ;PCODE: $000003FF VOL: 0
-; 0000 01F2     { // DOWN
-; 0000 01F3       while (PINA .0 == 0)
+; 0000 01E1     { // DOWN
+; 0000 01E2       while (PINA.0 == 0);
 ;PCODE: $00000400 VOL: 0
 ;PCODE: $00000401 VOL: 0
 ;PCODE: $00000402 VOL: 0
 ;PCODE: $00000403 VOL: 0
-; 0000 01F4         ;
 ;PCODE: $00000404 VOL: 0
 ;PCODE: $00000405 VOL: 0
-; 0000 01F5       reserved--;
+; 0000 01E3       reserved--;
 ;PCODE: $00000406 VOL: 0
-; 0000 01F6     }
-; 0000 01F7 
-; 0000 01F8     if (reserved <= 0)
+; 0000 01E4     }
+; 0000 01E5 
+; 0000 01E6     if (reserved <= 0)
 ;PCODE: $00000407 VOL: 0
 ;PCODE: $00000408 VOL: 0
 ;PCODE: $00000409 VOL: 0
 ;PCODE: $0000040A VOL: 0
-; 0000 01F9     {
-; 0000 01FA       reserved = 0;
+; 0000 01E7     {
+; 0000 01E8       reserved = 0;
 ;PCODE: $0000040B VOL: 0
-; 0000 01FB     }
-; 0000 01FC 
-; 0000 01FD     if (PINA .4 == 0)
+; 0000 01E9     }
+; 0000 01EA 
+; 0000 01EB     if (PINA.4 == 0)
 ;PCODE: $0000040C VOL: 0
 ;PCODE: $0000040D VOL: 0
 ;PCODE: $0000040E VOL: 0
 ;PCODE: $0000040F VOL: 0
-; 0000 01FE     { // Back
-; 0000 01FF       while (PINA .4 == 0)
+; 0000 01EC     { // Back
+; 0000 01ED       while (PINA.4 == 0);
 ;PCODE: $00000410 VOL: 0
 ;PCODE: $00000411 VOL: 0
 ;PCODE: $00000412 VOL: 0
 ;PCODE: $00000413 VOL: 0
-; 0000 0200         ;
 ;PCODE: $00000414 VOL: 0
 ;PCODE: $00000415 VOL: 0
-; 0000 0201       return 0;
+; 0000 01EE       return 0;
 ;PCODE: $00000416 VOL: 0
 ;PCODE: $00000417 VOL: 0
 ;PCODE: $00000418 VOL: 0
-; 0000 0202     }
-; 0000 0203     delay_ms(25);
+; 0000 01EF     }
+; 0000 01F0     delay_ms(25);
 ;PCODE: $00000419 VOL: 0
 ;PCODE: $0000041A VOL: 0
 ;PCODE: $0000041B VOL: 0
 ;PCODE: $0000041C VOL: 0
-; 0000 0204   }
+; 0000 01F1   }
 ;PCODE: $0000041D VOL: 0
 ;PCODE: $0000041E VOL: 0
-; 0000 0205 }
+; 0000 01F2 }
 ;PCODE: $0000041F VOL: 0
 ;PCODE: $00000420 VOL: 0
 ;PCODE: $00000421 VOL: 0
@@ -1604,12 +1585,12 @@
 ;//// data setting
 ;
 ;char set_data(void)
-; 0000 020A {
+; 0000 01F7 {
 ;PCODE: $00000422 VOL: 0
 ;PCODE: $00000423 VOL: 0
-; 0000 020B   char _chose = 0;
-; 0000 020C   char buff[17];
-; 0000 020D   while (1)
+; 0000 01F8   char _chose = 0;
+; 0000 01F9   char buff[17];
+; 0000 01FA   while (1)
 ;PCODE: $00000424 VOL: 0
 ;PCODE: $00000425 VOL: 0
 ;	_chose -> R17
@@ -1617,14 +1598,13 @@
 ;PCODE: $00000426 VOL: 0
 ;PCODE: $00000427 VOL: 0
 ;PCODE: $00000428 VOL: 0
-; 0000 020E   {
-; 0000 020F 
-; 0000 0210     if (_chose == 1)
+; 0000 01FB   {
+; 0000 01FC     if (_chose == 1)
 ;PCODE: $00000429 VOL: 0
 ;PCODE: $0000042A VOL: 0
 ;PCODE: $0000042B VOL: 0
-; 0000 0211     {
-; 0000 0212       sprintf(buff, "Set month=%d  >", month);
+; 0000 01FD     {
+; 0000 01FE       sprintf(buff, "Set month=%d  >", month);
 ;PCODE: $0000042C VOL: 0
 ;PCODE: $0000042D VOL: 0
 ;PCODE: $0000042E VOL: 0
@@ -1637,19 +1617,19 @@
 ;PCODE: $00000435 VOL: 0
 ;PCODE: $00000436 VOL: 0
 ;PCODE: $00000437 VOL: 0
-; 0000 0213       lcd_clear();
+; 0000 01FF       lcd_clear();
 ;PCODE: $00000438 VOL: 0
-; 0000 0214       lcd_puts(buff);
+; 0000 0200       lcd_puts(buff);
 ;PCODE: $00000439 VOL: 0
 ;PCODE: $0000043A VOL: 0
-; 0000 0215     }
-; 0000 0216 
-; 0000 0217     if (_chose == 0)
+; 0000 0201     }
+; 0000 0202 
+; 0000 0203     if (_chose == 0)
 ;PCODE: $0000043B VOL: 0
 ;PCODE: $0000043C VOL: 0
 ;PCODE: $0000043D VOL: 0
-; 0000 0218     {
-; 0000 0219       sprintf(buff, "Set day=%d  >", day);
+; 0000 0204     {
+; 0000 0205       sprintf(buff, "Set day=%d  >", day);
 ;PCODE: $0000043E VOL: 0
 ;PCODE: $0000043F VOL: 0
 ;PCODE: $00000440 VOL: 0
@@ -1662,20 +1642,20 @@
 ;PCODE: $00000447 VOL: 0
 ;PCODE: $00000448 VOL: 0
 ;PCODE: $00000449 VOL: 0
-; 0000 021A       lcd_clear();
+; 0000 0206       lcd_clear();
 ;PCODE: $0000044A VOL: 0
-; 0000 021B       lcd_puts(buff);
+; 0000 0207       lcd_puts(buff);
 ;PCODE: $0000044B VOL: 0
 ;PCODE: $0000044C VOL: 0
-; 0000 021C     }
-; 0000 021D 
-; 0000 021E     if (_chose == 2)
+; 0000 0208     }
+; 0000 0209 
+; 0000 020A     if (_chose == 2)
 ;PCODE: $0000044D VOL: 0
 ;PCODE: $0000044E VOL: 0
 ;PCODE: $0000044F VOL: 0
 ;PCODE: $00000450 VOL: 0
-; 0000 021F     {
-; 0000 0220       sprintf(buff, "Set year=%d  >", year);
+; 0000 020B     {
+; 0000 020C       sprintf(buff, "Set year=%d  >", year);
 ;PCODE: $00000451 VOL: 0
 ;PCODE: $00000452 VOL: 0
 ;PCODE: $00000453 VOL: 0
@@ -1688,14 +1668,14 @@
 ;PCODE: $0000045A VOL: 0
 ;PCODE: $0000045B VOL: 0
 ;PCODE: $0000045C VOL: 0
-; 0000 0221       lcd_clear();
+; 0000 020D       lcd_clear();
 ;PCODE: $0000045D VOL: 0
-; 0000 0222       lcd_puts(buff);
+; 0000 020E       lcd_puts(buff);
 ;PCODE: $0000045E VOL: 0
 ;PCODE: $0000045F VOL: 0
-; 0000 0223     }
-; 0000 0224 
-; 0000 0225     if (PINA .1 == 0 & _chose == 1)
+; 0000 020F     }
+; 0000 0210 
+; 0000 0211     if (PINA.1 == 0 & _chose == 1)
 ;PCODE: $00000460 VOL: 0
 ;PCODE: $00000461 VOL: 0
 ;PCODE: $00000462 VOL: 0
@@ -1707,30 +1687,29 @@
 ;PCODE: $00000468 VOL: 0
 ;PCODE: $00000469 VOL: 0
 ;PCODE: $0000046A VOL: 0
-; 0000 0226     { // UP     month
-; 0000 0227       while (PINA .1 == 0)
+; 0000 0212     { // UP     month
+; 0000 0213       while (PINA.1 == 0);
 ;PCODE: $0000046B VOL: 0
 ;PCODE: $0000046C VOL: 0
 ;PCODE: $0000046D VOL: 0
 ;PCODE: $0000046E VOL: 0
-; 0000 0228         ;
 ;PCODE: $0000046F VOL: 0
 ;PCODE: $00000470 VOL: 0
-; 0000 0229       month++;
+; 0000 0214       month++;
 ;PCODE: $00000471 VOL: 0
 ;PCODE: $00000472 VOL: 0
 ;PCODE: $00000473 VOL: 0
-; 0000 022A       if (month > 12)
+; 0000 0215       if (month > 12)
 ;PCODE: $00000474 VOL: 0
 ;PCODE: $00000475 VOL: 0
 ;PCODE: $00000476 VOL: 0
-; 0000 022B         month = 1;
+; 0000 0216         month = 1;
 ;PCODE: $00000477 VOL: 0
 ;PCODE: $00000478 VOL: 0
-; 0000 022C     }
+; 0000 0217     }
 ;PCODE: $00000479 VOL: 0
-; 0000 022D 
-; 0000 022E     if (PINA .0 == 0 & _chose == 1)
+; 0000 0218 
+; 0000 0219     if (PINA.0 == 0 & _chose == 1)
 ;PCODE: $0000047A VOL: 0
 ;PCODE: $0000047B VOL: 0
 ;PCODE: $0000047C VOL: 0
@@ -1742,30 +1721,29 @@
 ;PCODE: $00000482 VOL: 0
 ;PCODE: $00000483 VOL: 0
 ;PCODE: $00000484 VOL: 0
-; 0000 022F     { // DOWN    month
-; 0000 0230       while (PINA .0 == 0)
+; 0000 021A     { // DOWN    month
+; 0000 021B       while (PINA.0 == 0);
 ;PCODE: $00000485 VOL: 0
 ;PCODE: $00000486 VOL: 0
 ;PCODE: $00000487 VOL: 0
 ;PCODE: $00000488 VOL: 0
-; 0000 0231         ;
 ;PCODE: $00000489 VOL: 0
 ;PCODE: $0000048A VOL: 0
-; 0000 0232       month--;
+; 0000 021C       month--;
 ;PCODE: $0000048B VOL: 0
 ;PCODE: $0000048C VOL: 0
 ;PCODE: $0000048D VOL: 0
-; 0000 0233       if (month < 1)
+; 0000 021D       if (month < 1)
 ;PCODE: $0000048E VOL: 0
 ;PCODE: $0000048F VOL: 0
 ;PCODE: $00000490 VOL: 0
-; 0000 0234         month = 12;
+; 0000 021E         month = 12;
 ;PCODE: $00000491 VOL: 0
 ;PCODE: $00000492 VOL: 0
-; 0000 0235     }
+; 0000 021F     }
 ;PCODE: $00000493 VOL: 0
-; 0000 0236 
-; 0000 0237     if (PINA .1 == 0 & _chose == 0)
+; 0000 0220 
+; 0000 0221     if (PINA.1 == 0 & _chose == 0)
 ;PCODE: $00000494 VOL: 0
 ;PCODE: $00000495 VOL: 0
 ;PCODE: $00000496 VOL: 0
@@ -1777,32 +1755,31 @@
 ;PCODE: $0000049C VOL: 0
 ;PCODE: $0000049D VOL: 0
 ;PCODE: $0000049E VOL: 0
-; 0000 0238     { // UP    day
-; 0000 0239       while (PINA .1 == 0)
+; 0000 0222     { // UP    day
+; 0000 0223       while (PINA.1 == 0);
 ;PCODE: $0000049F VOL: 0
 ;PCODE: $000004A0 VOL: 0
 ;PCODE: $000004A1 VOL: 0
 ;PCODE: $000004A2 VOL: 0
-; 0000 023A         ;
 ;PCODE: $000004A3 VOL: 0
 ;PCODE: $000004A4 VOL: 0
-; 0000 023B       day++;
+; 0000 0224       day++;
 ;PCODE: $000004A5 VOL: 0
-; 0000 023C       i = day;
+; 0000 0225       i = day;
 ;PCODE: $000004A6 VOL: 0
 ;PCODE: $000004A7 VOL: 0
 ;PCODE: $000004A8 VOL: 0
-; 0000 023D       if (day > 31)
+; 0000 0226       if (day > 31)
 ;PCODE: $000004A9 VOL: 0
 ;PCODE: $000004AA VOL: 0
 ;PCODE: $000004AB VOL: 0
-; 0000 023E         day = 1;
+; 0000 0227         day = 1;
 ;PCODE: $000004AC VOL: 0
 ;PCODE: $000004AD VOL: 0
-; 0000 023F     }
+; 0000 0228     }
 ;PCODE: $000004AE VOL: 0
-; 0000 0240 
-; 0000 0241     if (PINA .0 == 0 & _chose == 0)
+; 0000 0229 
+; 0000 022A     if (PINA.0 == 0 & _chose == 0)
 ;PCODE: $000004AF VOL: 0
 ;PCODE: $000004B0 VOL: 0
 ;PCODE: $000004B1 VOL: 0
@@ -1814,32 +1791,31 @@
 ;PCODE: $000004B7 VOL: 0
 ;PCODE: $000004B8 VOL: 0
 ;PCODE: $000004B9 VOL: 0
-; 0000 0242     { // DOWN    day
-; 0000 0243       while (PINA .0 == 0)
+; 0000 022B     { // DOWN    day
+; 0000 022C       while (PINA.0 == 0);
 ;PCODE: $000004BA VOL: 0
 ;PCODE: $000004BB VOL: 0
 ;PCODE: $000004BC VOL: 0
 ;PCODE: $000004BD VOL: 0
-; 0000 0244         ;
 ;PCODE: $000004BE VOL: 0
 ;PCODE: $000004BF VOL: 0
-; 0000 0245       day--;
+; 0000 022D       day--;
 ;PCODE: $000004C0 VOL: 0
-; 0000 0246       i = day;
+; 0000 022E       i = day;
 ;PCODE: $000004C1 VOL: 0
 ;PCODE: $000004C2 VOL: 0
 ;PCODE: $000004C3 VOL: 0
-; 0000 0247       if (day < 1)
+; 0000 022F       if (day < 1)
 ;PCODE: $000004C4 VOL: 0
 ;PCODE: $000004C5 VOL: 0
 ;PCODE: $000004C6 VOL: 0
-; 0000 0248         day = 31;
+; 0000 0230         day = 31;
 ;PCODE: $000004C7 VOL: 0
 ;PCODE: $000004C8 VOL: 0
-; 0000 0249     }
+; 0000 0231     }
 ;PCODE: $000004C9 VOL: 0
-; 0000 024A 
-; 0000 024B     if (PINA .0 == 0 & _chose == 2)
+; 0000 0232 
+; 0000 0233     if (PINA.0 == 0 & _chose == 2)
 ;PCODE: $000004CA VOL: 0
 ;PCODE: $000004CB VOL: 0
 ;PCODE: $000004CC VOL: 0
@@ -1851,31 +1827,30 @@
 ;PCODE: $000004D2 VOL: 0
 ;PCODE: $000004D3 VOL: 0
 ;PCODE: $000004D4 VOL: 0
-; 0000 024C     { // DOWN    year
-; 0000 024D       while (PINA .0 == 0)
+; 0000 0234     { // DOWN    year
+; 0000 0235       while (PINA.0 == 0);
 ;PCODE: $000004D5 VOL: 0
 ;PCODE: $000004D6 VOL: 0
 ;PCODE: $000004D7 VOL: 0
 ;PCODE: $000004D8 VOL: 0
-; 0000 024E         ;
 ;PCODE: $000004D9 VOL: 0
 ;PCODE: $000004DA VOL: 0
-; 0000 024F       year--;
+; 0000 0236       year--;
 ;PCODE: $000004DB VOL: 0
 ;PCODE: $000004DC VOL: 0
 ;PCODE: $000004DD VOL: 0
 ;PCODE: $000004DE VOL: 0
-; 0000 0250       if (year < 1)
+; 0000 0237       if (year < 1)
 ;PCODE: $000004DF VOL: 0
 ;PCODE: $000004E0 VOL: 0
 ;PCODE: $000004E1 VOL: 0
-; 0000 0251         year = 1300;
+; 0000 0238         year = 1300;
 ;PCODE: $000004E2 VOL: 0
 ;PCODE: $000004E3 VOL: 0
-; 0000 0252     }
+; 0000 0239     }
 ;PCODE: $000004E4 VOL: 0
-; 0000 0253 
-; 0000 0254     if (PINA .1 == 0 & _chose == 2)
+; 0000 023A 
+; 0000 023B     if (PINA.1 == 0 & _chose == 2)
 ;PCODE: $000004E5 VOL: 0
 ;PCODE: $000004E6 VOL: 0
 ;PCODE: $000004E7 VOL: 0
@@ -1887,82 +1862,79 @@
 ;PCODE: $000004ED VOL: 0
 ;PCODE: $000004EE VOL: 0
 ;PCODE: $000004EF VOL: 0
-; 0000 0255     { // UP    year
-; 0000 0256       while (PINA .1 == 0)
+; 0000 023C     { // UP    year
+; 0000 023D       while (PINA.1 == 0);
 ;PCODE: $000004F0 VOL: 0
 ;PCODE: $000004F1 VOL: 0
 ;PCODE: $000004F2 VOL: 0
 ;PCODE: $000004F3 VOL: 0
-; 0000 0257         ;
 ;PCODE: $000004F4 VOL: 0
 ;PCODE: $000004F5 VOL: 0
-; 0000 0258       year++;
+; 0000 023E       year++;
 ;PCODE: $000004F6 VOL: 0
 ;PCODE: $000004F7 VOL: 0
 ;PCODE: $000004F8 VOL: 0
 ;PCODE: $000004F9 VOL: 0
-; 0000 0259       // if(year>1404)
-; 0000 025A       // year=0;
-; 0000 025B     }
-; 0000 025C 
-; 0000 025D     if (PINA .3 == 0)
+; 0000 023F       // if(year>1404)
+; 0000 0240       // year=0;
+; 0000 0241     }
+; 0000 0242 
+; 0000 0243     if (PINA.3 == 0)
 ;PCODE: $000004FA VOL: 0
 ;PCODE: $000004FB VOL: 0
 ;PCODE: $000004FC VOL: 0
 ;PCODE: $000004FD VOL: 0
-; 0000 025E     { // NEXT
-; 0000 025F       while (PINA .3 == 0)
+; 0000 0244     { // NEXT
+; 0000 0245       while (PINA.3 == 0);
 ;PCODE: $000004FE VOL: 0
 ;PCODE: $000004FF VOL: 0
 ;PCODE: $00000500 VOL: 0
 ;PCODE: $00000501 VOL: 0
-; 0000 0260         ;
 ;PCODE: $00000502 VOL: 0
 ;PCODE: $00000503 VOL: 0
-; 0000 0261       _chose++;
+; 0000 0246       _chose++;
 ;PCODE: $00000504 VOL: 0
 ;PCODE: $00000505 VOL: 0
-; 0000 0262       if (_chose >= 3)
+; 0000 0247       if (_chose >= 3)
 ;PCODE: $00000506 VOL: 0
 ;PCODE: $00000507 VOL: 0
 ;PCODE: $00000508 VOL: 0
-; 0000 0263         _chose = 0;
+; 0000 0248         _chose = 0;
 ;PCODE: $00000509 VOL: 0
 ;PCODE: $0000050A VOL: 0
-; 0000 0264     }
+; 0000 0249     }
 ;PCODE: $0000050B VOL: 0
-; 0000 0265 
-; 0000 0266     if (PINA .4 == 0)
+; 0000 024A 
+; 0000 024B     if (PINA.4 == 0)
 ;PCODE: $0000050C VOL: 0
 ;PCODE: $0000050D VOL: 0
 ;PCODE: $0000050E VOL: 0
 ;PCODE: $0000050F VOL: 0
-; 0000 0267     { // Back
-; 0000 0268       while (PINA .4 == 0)
+; 0000 024C     { // Back
+; 0000 024D       while (PINA.4 == 0);
 ;PCODE: $00000510 VOL: 0
 ;PCODE: $00000511 VOL: 0
 ;PCODE: $00000512 VOL: 0
 ;PCODE: $00000513 VOL: 0
-; 0000 0269         ;
 ;PCODE: $00000514 VOL: 0
 ;PCODE: $00000515 VOL: 0
-; 0000 026A       return 0;
+; 0000 024E       return 0;
 ;PCODE: $00000516 VOL: 0
 ;PCODE: $00000517 VOL: 0
 ;PCODE: $00000518 VOL: 0
 ;PCODE: $00000519 VOL: 0
 ;PCODE: $0000051A VOL: 0
-; 0000 026B     }
-; 0000 026C 
-; 0000 026D     delay_ms(25);
+; 0000 024F     }
+; 0000 0250 
+; 0000 0251     delay_ms(25);
 ;PCODE: $0000051B VOL: 0
 ;PCODE: $0000051C VOL: 0
 ;PCODE: $0000051D VOL: 0
 ;PCODE: $0000051E VOL: 0
-; 0000 026E   }
+; 0000 0252   }
 ;PCODE: $0000051F VOL: 0
 ;PCODE: $00000520 VOL: 0
-; 0000 026F }
+; 0000 0253 }
 ;PCODE: $00000521 VOL: 0
 ;PCODE: $00000522 VOL: 0
 ;PCODE: $00000523 VOL: 0
