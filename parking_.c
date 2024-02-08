@@ -12,9 +12,9 @@ char reserve_park(void);
 char set_data(void);
 
 // parking related variables
-unsigned int n_vurud, n_khuruj;                      // maximum  65535  car per day
-eeprom unsigned int enter_array[31], exit_array[31]; // for saving enters and exists
-eeprom unsigned char i;                              // ?
+unsigned int n_vurud, n_khuruj;
+eeprom unsigned int enter_array[31], exit_array[31];
+eeprom unsigned char i; // ?
 unsigned char const init_capacity = 10;
 signed char capacity = init_capacity, reserved = 0;
 bit is_full = 0, is_emp = 0;
@@ -91,7 +91,7 @@ interrupt[EXT_INT0] void ext_int0_isr(void)
   capacity++;
   n_khuruj++; // Incrementing the count of cars leaving the parking
 
-  // correct variables if they pass the inittilized capacity
+  // check if the parking is empty
   if ((capacity + reserved) >= init_capacity)
   {
     capacity = init_capacity - reserved;
@@ -102,7 +102,7 @@ interrupt[EXT_INT0] void ext_int0_isr(void)
     is_emp = 0;
   }
 
-  // check if the parking is full
+  // checking if the parking is full
   if (capacity <= 0)
   {
     capacity = 0;
@@ -120,6 +120,7 @@ interrupt[EXT_INT1] void ext_int1_isr(void)
   capacity--;
   n_vurud++;
 
+  // checking if the parking is full
   if ((capacity) <= 0)
   {
     capacity = 0;
@@ -130,6 +131,7 @@ interrupt[EXT_INT1] void ext_int1_isr(void)
     is_full = 0;
   }
 
+  // check if the parking is empty
   if ((capacity + reserved) >= init_capacity)
   {
     capacity = init_capacity - reserved;
@@ -204,18 +206,22 @@ void main(void)
 
     sprintf(line, "Cap=%d %d/%d/%d", capacity, year, month, day);
     sprintf(line2, "%d:%d:%d  Res=%d ", hour, minute, second, reserved);
-    // sprintf(line, "%d/%d/%d  %d:%d:%d", year, month, day, hour, minute, second);
-    // sprintf(line2, "Cap=%d   R=%d ", capacity, reserved);
-
+    
     lcd_clear();
 
     lcd_puts(line);
 
     if (is_full == 1)
+    {
       lcd_putsf(" Full");
+      delay_ms(25);
+    }
 
     if (is_emp == 1)
+    {
       lcd_putsf(" Emp");
+      delay_ms(25);
+    }
 
     lcd_gotoxy(0, 1);
     lcd_puts(line2);
