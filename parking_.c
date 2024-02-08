@@ -12,7 +12,7 @@ char reserve_park(void);
 char set_date(void);
 
 // parking related variables
-unsigned int n_vurud, n_khuruj;
+unsigned int n_vurud = 0, n_khuruj = 0;
 eeprom unsigned int enter_array[31] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 eeprom unsigned int exit_array[31] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 eeprom unsigned char day_index = 0;
@@ -21,8 +21,7 @@ signed char capacity = init_capacity, reserved = 0;
 bit is_full = 0, is_empty = 1;
 
 // date related variables
-signed char minute = 59, hour = 23, second = 10, day = 12, month = 12;
-signed int year = 1402;
+unsigned int second = 50, minute = 59, hour = 23, day = 29, month = 12, year = 1402;
 
 // define timer interrupt: clock and date logic
 interrupt[TIM2_OVF] void timer2_ovf_isr(void)
@@ -185,9 +184,9 @@ void main(void)
   OCR2 = 0x00;
   TIMSK = 0x40;
 
-  PORTA = (1 << DDD0) | (1 << DDD1) | (1 << DDD2) | (1 << DDD3) | (1 << DDD4);
+  PORTA = 0b00011111;
 
-  day = day_index; // day_index in epprom
+  // day = day_index; // day_index in epprom
 
 #asm("sei")
   capacity = capacity - reserved;
@@ -219,8 +218,8 @@ void main(void)
       }
     }
 
-    sprintf(line, "Cap=%d %d/%d/%d", capacity, year, month, day);
-    sprintf(line2, "%d:%d:%d  Res=%d ", hour, minute, second, reserved);
+    sprintf(line, "C=%d %d/%d/%d", capacity, year, month, day);
+    sprintf(line2, "%d:%d:%d  R=%d ", hour, minute, second, reserved);
     lcd_clear();
     lcd_puts(line);
     lcd_gotoxy(0, 1);
@@ -342,9 +341,10 @@ char set_time(void)
     { // DOWN    min
       while (PINA .0 == 0)
         ;
-      minute--;
-      if (minute < 0)
+      if (minute == 0)
         minute = 59;
+      else
+        minute--;
     }
 
     if (PINA .1 == 0 & choice == 1)
@@ -360,9 +360,10 @@ char set_time(void)
     { // DOWN    hour
       while (PINA .0 == 0)
         ;
-      hour--;
-      if (hour < 0)
+      if (hour == 0)
         hour = 23;
+      else
+        hour--;
     }
 
     if (PINA .3 == 0)
