@@ -11,14 +11,14 @@ char set_time(void);
 char reserve_park(void);
 char set_date(void);
 
-unsigned int number_of_enters = 0, number_of_exits = 0;
+int number_of_enters = 0, number_of_exits = 0;
 int enter_array[31] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int exit_array[31] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-unsigned char day_index = 0;
-unsigned char const init_capacity = 10;
-signed char capacity = init_capacity, reserved = 0;
+char day_index = 0;
+char const init_capacity = 10;
+char reserved = 0, capacity = init_capacity;
 bit is_full = 0, is_empty = 1;
-unsigned int second = 50, minute = 59, hour = 23, day = 29, month = 12, year = 1402;
+int second = 50, minute = 59, hour = 23, day = 29, month = 12, year = 1402;
 
 // define timer interrupt: clock and date logic
 interrupt[TIM2_OVF] void timer2_ovf_isr(void)
@@ -164,10 +164,10 @@ void main(void)
 {
     char line[17], line2[17];
 
-    GICR |= 0xC0;
-    MCUCR = 0x0B;
-    MCUCSR = 0x00;
-    GIFR = 0xC0;
+    GICR = 0b11000000;   // enable INT0 and INT1 interrupts
+    MCUCSR = 0b00000000; // how to trigger: low level
+    GIFR = 0b11000000;   // enabling flag
+#asm("sei")              // enable interrupt globally
 
     // initilize lcd
     lcd_init(16);
@@ -175,17 +175,13 @@ void main(void)
     lcd_gotoxy(0, 1);
     delay_ms(300);
 
-    ASSR = 0x08; // timer2
-    TCCR2 = 0x05;
-    TCNT2 = 0x00;
-    OCR2 = 0x00;
-    TIMSK = 0x40;
+    TCCR2 = 0b00000101; // enable timer
+    TIMSK = 0b01000000; // interrupt
+    ASSR = 0b00001000;  // set clock source
 
     PORTA = 0b00011111;
 
-#asm("sei")
-    capacity = capacity - reserved;
-
+    capacity -= reserved;
     while (1)
     {
         if (PINA .2 == 0)
@@ -402,7 +398,7 @@ char in_out_search(void)
         {
             while (PINA .1 == 0)
                 ;
-            if (temp_day_index == 30)
+            if (temp_day_index >= day_index)
             {
                 lcd_clear();
                 lcd_puts("Out of index.");
@@ -489,7 +485,7 @@ char in_out_search(void)
         }
 
         sprintf(line, "%d/%d/%d", temp_year, temp_month, temp_day);
-        sprintf(line2, "in=%d out=%d %d %d", enter_array[temp_day_index], exit_array[temp_day_index]);
+        sprintf(line2, "in=%d out=%d", enter_array[temp_day_index], exit_array[temp_day_index]);
 
         lcd_clear();
         lcd_puts(line);
